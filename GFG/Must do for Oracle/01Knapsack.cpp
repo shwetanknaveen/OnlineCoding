@@ -18,7 +18,7 @@ class Solution
         return 0;
         if(dp[n][W]!=-1) 
         return dp[n][W];//return already remembered value
-        if(W>=wt[n-1])
+        if(W>=wt[n-1])//doing n-1 for wt because wt is stored from 0 index
         {
             dp[n][W] = max(val[n-1]+knapSackRec((W-wt[n-1]),wt,val,n-1,dp),knapSackRec(W,wt,val,n-1,dp));
             return dp[n][W];
