@@ -1,8 +1,8 @@
-//Problem link - https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/?category[]=Dynamic%20Programming&category[]=Dynamic%20Programming&page=4&query=category[]Dynamic%20Programmingpage4category[]Dynamic%20Programming#
-//Aditya verma link - https://www.youtube.com/watch?v=_gPcYovP7wc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=7
-
-class Solution{   
+//Problem link - https://www.geeksforgeeks.org/partition-problem-dp-18/
+//Aditya verma link- https://www.youtube.com/watch?v=UmMh7xp07kY&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=8
+class Solution{
 public:
+
     bool isSubsetSum(int N, int arr[], int sum){
         // code here 
         vector<vector<bool>> dp(N+1,vector<bool>(sum+1));
@@ -26,7 +26,7 @@ public:
 								/*We take that element				We don't take that element and 
 								and check whether sum = 			check whether sum = j is possible with
 								j-value of this is possible 		previous elements or not
-								with previous elements or not
+								with previous elements are not
 								*/                    
                 }
                 else
@@ -38,6 +38,15 @@ public:
         }
         return dp[N][sum];//whether we can get sum = sum considering all N elements
     }
-    
-    
+    int equalPartition(int N, int arr[])
+    {
+        // code here
+        int totalSum=0;
+        for(int i=0;i<N;i++)
+        totalSum+=arr[i];
+        if(totalSum&1) return 0;//if total sum is odd then we can't have equal partition at all
+        return isSubsetSum(N,arr,totalSum/2) ? 1 : 0;//check whether subset sum is possible for totalSum/2
+        
+    }
 };
+
