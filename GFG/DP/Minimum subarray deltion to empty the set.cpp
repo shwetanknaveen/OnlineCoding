@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-int dp[501][501];
  
 
-int helper(vector<int> arr, int left, int right)
+int helper(vector<int> arr, int left, int right,vector<vector<int>> &dp)
 {
     
     if (left > right)
@@ -14,13 +13,13 @@ int helper(vector<int> arr, int left, int right)
         return dp[left][right];
     }
  
-    int ans = (1) + helper(arr, left + 1,right);
+    int ans = (1) + helper(arr, left + 1,right,dp);
  
     for (int i = left + 1;i <= right; ++i) {
  
         if (arr[i] == arr[left]) {
  
-            ans = min(ans,helper(arr, left + 1,i - 1)+ helper(arr, i, right));
+            ans = min(ans,helper(arr, left + 1,i - 1,dp)+ helper(arr, i, right,dp));
         }
     }
  
@@ -35,18 +34,22 @@ int helper(vector<int> arr, int left, int right)
 int maxPoints(vector<int> arr)
 {   
     int len = arr.size();
-    memset(dp, -1, sizeof(dp));
- 
+    
+    vector<vector<int>> dp(len+1,vector<int>(len+1));
+ 	for(int i=0;i<=len;i++)
+ 	for(int j=0;j<=len;j++)
+ 	dp[i][j] = -1;
 
-    return helper(arr, 0, len - 1);
+    return helper(arr, 0, len - 1,dp);
 }
 
 int main() {
 	// your code goes here
-//	vector<int> num{1,2,2,2,1,1};
+	vector<int> num{1,2,2,2,1,1};
 //	vector<int> num{1,2,1,3,1};
 //	vector<int> num{1,2,2,2,1,1,3,3,3,2,2,1,1};
-	vector<int> num{1,1,1,1,1,1,1,1,1,1,1,1,1};
+//	vector<int> num{1,1,1,1,1,1,1,1,1,1,1,1,1};
 	cout <<maxPoints(num)<<endl;
+	
 	return 0;
 }
