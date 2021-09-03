@@ -1,77 +1,52 @@
-// C++ program for the above approach
-
 #include <bits/stdc++.h>
 using namespace std;
+int dp[501][501];
+ 
 
-// Initialize dp array
-int dp[101][101][101];
-
-// Function that removes elements
-// from array to maximize the cost
-int helper(int arr[], int left, int right,
-		int count)
+int helper(vector<int> arr, int left, int right)
 {
-	// Base case
-	if (left > right)
-		return 0;
+    
+    if (left > right)
+        return 0;
+ 
 
-	// Check if an answer is stored
-	if (dp[left][right][count] != -1) {
-		return dp[left][right][count];
-	}
-
-	// Deleting count + 1 i.e. including
-	// the first element and starting a
-	// new sequence
-	int ans = (count + 1)
-			+ helper(arr, left + 1,
-					right, 0);
-
-	for (int i = left + 1;
-		i <= right; ++i) {
-
-		if (arr[i] == arr[left]) {
-
-			// Removing [left + 1, i - 1]
-			// elements to continue with
-			// previous sequence
-			ans = max(
-				ans,
-				helper(arr, left + 1,
-					i - 1, 0)
-					+ helper(arr, i, right,
-							count + 1));
-		}
-	}
-
-	// Store the result
-	dp[left][right][count] = ans;
-
-	// Return answer
-	return ans;
+    if (dp[left][right] != -1) {
+        return dp[left][right];
+    }
+ 
+    int ans = (1) + helper(arr, left + 1,right);
+ 
+    for (int i = left + 1;i <= right; ++i) {
+ 
+        if (arr[i] == arr[left]) {
+ 
+            ans = min(ans,helper(arr, left + 1,i - 1)+ helper(arr, i, right));
+        }
+    }
+ 
+    // Store the result
+    dp[left][right] = ans;
+ 
+    // Return answer
+    return ans;
 }
-
+ 
 // Function to remove the elements
-int maxPoints(int arr[], int n)
-{
-	int len = n;
-	memset(dp, -1, sizeof(dp));
+int maxPoints(vector<int> arr)
+{   
+    int len = arr.size();
+    memset(dp, -1, sizeof(dp));
+ 
 
-	// Function Call
-	return helper(arr, 0, len - 1, 0);
+    return helper(arr, 0, len - 1);
 }
 
-// Driver Code
-int main()
-{
-	// Given array
-	int arr[] = { 1, 2, 2, 2, 1, 1 };
-
-
-	int N = sizeof(arr) / sizeof(arr[0]);
-
-	// Function Call
-	cout << maxPoints(arr, N);
+int main() {
+	// your code goes here
+//	vector<int> num{1,2,2,2,1,1};
+//	vector<int> num{1,2,1,3,1};
+//	vector<int> num{1,2,2,2,1,1,3,3,3,2,2,1,1};
+	vector<int> num{1,1,1,1,1,1,1,1,1,1,1,1,1};
+	cout <<maxPoints(num)<<endl;
 	return 0;
 }
-
