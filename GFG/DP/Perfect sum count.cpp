@@ -14,7 +14,7 @@ public:
         dp[i][0] = 1;//initialisation of first column
                         //dp[0][0] has to be true ->0 sum is possible with no element hence dp[0][0] is true
                         
-	//dp[i][j] means that what no. of subsets of the set upto ith element which can have sum = j
+		//dp[i][j] means that what no. of subsets of the set upto ith element which can have sum = j
                         
         for(int i = 1;i<=N;i++)
         {
