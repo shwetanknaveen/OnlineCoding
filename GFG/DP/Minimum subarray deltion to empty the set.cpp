@@ -35,10 +35,7 @@ int maxPoints(vector<int> arr)
 {   
     int len = arr.size();
     
-    vector<vector<int>> dp(len+1,vector<int>(len+1));
- 	for(int i=0;i<=len;i++)
- 	for(int j=0;j<=len;j++)
- 	dp[i][j] = -1;
+    vector<vector<int>> dp(len+1,vector<int>(len+1,-1));//we can directly provide default value as -1
 
     return helper(arr, 0, len - 1,dp);
 }
