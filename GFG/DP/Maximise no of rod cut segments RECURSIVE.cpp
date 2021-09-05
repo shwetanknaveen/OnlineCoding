@@ -1,6 +1,6 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/cutted-segments1642/1#
 
-//if n is the rod length and possble cut lengths are x,y and z then we have to n1+n2+n3 such that
+//if n is the rod length and possble cut lengths are x,y and z then we have to get n1+n2+n3 such that
         //							x*n1 + y*n2 + z*n3 = n and
         //							n1 + n2 + n3 is maximum
 class Solution
