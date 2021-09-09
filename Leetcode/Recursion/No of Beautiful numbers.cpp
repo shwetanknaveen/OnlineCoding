@@ -1,3 +1,5 @@
+
+//Video link - https://www.youtube.com/watch?v=vhHrUeSdFGU&t=681s
 class Solution {
 public:
     void getCount(vector<bool> &visited, int pos,int n, int &ans)
