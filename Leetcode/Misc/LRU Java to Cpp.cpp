@@ -1,3 +1,4 @@
+//Problem link - https://leetcode.com/problems/lru-cache/
 #include<bits/stdc++.h>
 using namespace std;
 class LRUCache {
@@ -46,10 +47,10 @@ public:
             //now we have to delete the accessed node from its current place and insert it in the front as it has been
             //accessed now and it will be the least recently used node
             
-            deletenode(resnode);//it will do it in O(1) time since we have direct address of node to be deleted since all
+            deletenode(accessedNode);//it will do it in O(1) time since we have direct address of node to be deleted since all
             					//the addresses of all nodes were hashed to their key value in the map
             m.erase(key_);
-            addnode(resnode);//add it in the front
+            addnode(accessedNode);//add it in the front
             m[key_] = head->next;//since node has been inserted in the front so head->next will give its address
         }
         return res;
