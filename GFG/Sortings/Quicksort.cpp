@@ -5,9 +5,18 @@ class Solution
     //Function to sort an array using quick sort algorithm.
     void quickSort(int arr[], int low, int high)
     {
-        // code here
+    	
         if(low<high)
         {
+        	//We know that our end element will be pivot hence to make randomized selection of pivot we can do following
+	       int p = rand () % (high - low + 1) + low;
+	       int t = arr[high];
+	       arr[l] = arr[p];
+	       arr[p] = t;
+	       //end of logic for using randomized pivot
+        	
+        	
+        	
             int q = partition(arr,low,high);//q is the index where pivot = arr[high] has
                                         //been inserted such that all elements on its
                                         //left are smaller than it
@@ -22,14 +31,6 @@ class Solution
        // Your code here
        int i,j,temp;
        i = low -1;
-       
-       //We know that our end element will be pivot hence to make randomized selection of pivot we can do following
-       int p = rand () % (high - low + 1) + low;
-       int t = arr[high];
-       arr[l] = arr[p];
-       arr[p] = t;
-       //end of logic for using randomized pivot
-       
        
        for(j=low;j<=(high-1);j++)// Pivot = arr[high]
        {
