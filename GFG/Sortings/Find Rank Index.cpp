@@ -3,7 +3,7 @@
 using namespace std;
 
 //Normal partitioning as done in quick sort
-//O(1)
+//O(N)
 int partition (int arr[], int low, int high)
     {
        // Your code here
@@ -30,8 +30,8 @@ int partition (int arr[], int low, int high)
  
 /*Average complexity O(n)
 This algorithm returns the index of the element in the array arr which has rank = rank.
-Rank of element is (no. of numbers greater than that number) + 1. ==>Larger the number lower will be its rank and vice versa.
 Meaniwhile it also changes arr and fits the required element whose rank is rank at its suitable place.
+Rank of element is (no. of numbers greater than that number) + 1. ==>Larger the number lower will be its rank and vice versa.
 So to find median and set the median at mid position we call this function with rank = n/2 +1 */ 
     
 int FindRankIndex(int arr[],int l, int r,int rank)
@@ -77,15 +77,32 @@ int main()
 	cout<<endl<<"Enter elements\n";
 	for(int i=0;i<n;i++)
 	cin>>arr[i];
-	cout<<"Enter rank\t";
+	cout<<"Enter rank for median\t";
 	cin>>r;
-	cout<<endl<<"Array before finding rank\n";
+	cout<<endl<<"Array before finding median\n";
 	for(int i : arr)
 	cout<<i<<"  ";
-	cout<<"Index for rank = "<<(n/2+1)<<"\t is ->"<<FindRankIndex(arr,0,n-1,n/2+1);
-	cout<<endl<<"Array before finding rank\n";
+	cout<<"Index for rank = "<<r<<"\t is ->"<<FindRankIndex(arr,0,n-1,r);//for median pass rank = n/2+1
+	cout<<endl<<"Array after finding median\n";
 	for(int i : arr)
 	cout<<i<<"  ";
+	
+	int largest, smallest;
+	cout<<"\nHow many largest numbers do you want?\t";
+	cin>>largest;
+	cout<<"\nHow many smallest numbers do you want?\t";
+	cin>>smallest;
+
+	FindRankIndex(arr,0,n-1,largest+1);
+	cout<<endl<<largest<<" Largest numbers are "<<largest<<" numbers in the end of following array\n";
+	for(int i : arr)
+	cout<<i<<"  ";
+	
+	FindRankIndex(arr,0,n-1,n-smallest);
+	cout<<endl<<smallest<<" Smallest numbers are "<<smallest<<" numbers in the begining of following array\n";
+	for(int i : arr)
+	cout<<i<<"  ";
+	
 	
 	return 0;
 }
