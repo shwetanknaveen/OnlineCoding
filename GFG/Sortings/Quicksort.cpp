@@ -22,6 +22,15 @@ class Solution
        // Your code here
        int i,j,temp;
        i = low -1;
+       
+       //We know that our end element will be pivot hence to make randomized selection of pivot we can do following
+       int p = rand () % (high - low + 1) + low;
+       int t = arr[high];
+       arr[l] = arr[p];
+       arr[p] = t;
+       //end of logic for using randomized pivot
+       
+       
        for(j=low;j<=(high-1);j++)// Pivot = arr[high]
        {
            if(arr[j]<arr[high])
