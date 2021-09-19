@@ -34,7 +34,7 @@ class Solution
        
        for(j=low;j<=(high-1);j++)// Pivot = arr[high]
        {
-           if(arr[j]<arr[high])
+           if(arr[j]<arr[high])//if it is smaller than the pivot then move it to the left
            {
                temp = arr[++i];
                arr[i] = arr[j];
