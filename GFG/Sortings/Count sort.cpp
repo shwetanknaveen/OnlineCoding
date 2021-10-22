@@ -30,7 +30,7 @@ void countSort(int arr[],int n){
 	int output[n];
 	for(int i=n-1;i>=0;i--)
 	{
-		output[--count[arr[i]]] = arr[i];//searching the input array from left to right and storing
+		output[--count[arr[i]]] = arr[i];//searching the input array from right to left and storing
 										//the numbers at their right position
 	}
 	for(int i=0;i<n;i++)
