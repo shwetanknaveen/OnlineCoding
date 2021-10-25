@@ -50,3 +50,56 @@ public:
 	    
 	}
 };
+
+/*Following approach in O(1) space and O(N^2) time complexity using right rotation
+class Solution{
+public:
+
+    void negativeAtEvenIndex(int arr[],int n,int i)
+    {
+        int temp;
+        for(int j=i+1;j<n;j++)
+        {
+            if(arr[j]>=0)
+            {
+                temp = arr[j];
+                while(j>i)
+                {
+                    arr[j] = arr[j-1];
+                    j--;
+                }
+                arr[j] = temp;
+                return;
+            }
+        }
+    }
+    void positiveAtOddIndex(int arr[],int n,int i)
+    {
+        int temp;
+        for(int j=i+1;j<n;j++)
+        {
+            if(arr[j]<0)
+            {
+                temp = arr[j];
+                while(j>i)
+                {
+                    arr[j] = arr[j-1];
+                    j--;
+                }
+                arr[j] = temp;
+                return;
+            }
+        }
+    }
+	void rearrange(int arr[], int n) {
+	    // code here
+	    for(int i=0;i<n;i++)
+	    {
+	        if((i&1) && arr[i]>=0)//positive number at odd index
+	        positiveAtOddIndex(arr,n,i);
+	        else if(!(i&1) && arr[i]<0)//negative number at even index
+	        negativeAtEvenIndex(arr,n,i);
+	    }
+	}
+};
+*/
