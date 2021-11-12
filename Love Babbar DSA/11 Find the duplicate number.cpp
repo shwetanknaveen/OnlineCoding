@@ -40,3 +40,20 @@ public:
         
     }
 };
+
+//If all the numbers in the arrray are distinct except that one repeating number
+//then following solution can also work
+/*
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size()-1;
+        int ans = 0;//EXOR with 0 is identity
+        for(int i=1;i<=n;i++)
+            ans ^= i;
+        for(int i=0;i<=n;i++)
+            ans ^= nums[i];
+        return ans;
+    }
+};
+*/

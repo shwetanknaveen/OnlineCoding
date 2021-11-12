@@ -28,7 +28,9 @@ pair<int,int> missingAndRepeating(vector<int> &arr, int n)
  
         /* Get the rightmost set bit in set_bit_no
 		LEARN BELOW TECHNIQUE TO GET RIGHT MOST SET BIT OF A NUMBER */
-        set_bit_no = xor1 & ~(xor1 - 1);
+		
+        set_bit_no = xor1 & ~(xor1 - 1);//AND the 2's complement with no. itself
+        
         /*set_bit_no will have numeric value after setting the right most set bit
  		Like if xor1 = 3 then set_bit_no = 1
  		if xor1 = 4 then set_bit_no = 4 and so on
