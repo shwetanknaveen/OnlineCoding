@@ -5,3 +5,5 @@ Leetcode All DP problems - https://leetcode.com/discuss/general-discussion/10009
 Sorting algos - https://leetcode.com/discuss/general-discussion/1091763/must-do-all-required-sorting-algorithms-complete-guide
 
 Striver 180 sheet - https://www.codingninjas.com/codestudio/problem-lists/striver-sde-sheet-problems
+
+Striver ORIGINAL 180 sheet - https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/
