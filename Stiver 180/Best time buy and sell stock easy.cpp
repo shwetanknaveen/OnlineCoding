@@ -1,4 +1,6 @@
 //Problem link - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+//NOT best soln as uses O(N) space
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
@@ -28,3 +30,20 @@ public:
         return maxProfit;        
     }
 };
+
+/*
+STRIVER SOLUTION -> T(n) = O(n) , S(n) = O(1)
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int minBuyPrice = INT_MAX, maxProfit = INT_MIN,n=prices.size();
+        for(int i=0;i<n;i++)
+        {
+            minBuyPrice = min(minBuyPrice,prices[i]);
+            maxProfit = max(maxProfit,prices[i]-minBuyPrice);
+        }
+        return maxProfit;
+    }
+};
+*/
