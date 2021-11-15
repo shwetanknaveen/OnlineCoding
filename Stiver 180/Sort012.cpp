@@ -71,7 +71,9 @@ void sort012(int a[], int n)
             mid++;
 
         else
-            swap(&a[mid], &a[high--]);
+            swap(&a[mid], &a[high--]);//no increment of mid
+            						//exchanged value is coming from right side which may be greater hence mid should not
+            						//be increased and value at mid index should be checked again
     }
 }
 
