@@ -1,5 +1,5 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/search-in-a-matrix17201720/1
-
+//Time complexity - O(row + column)
 class Solution{
 public:	
 	int matSearch (vector <vector <int>> &mat, int n, int m, int x)
