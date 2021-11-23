@@ -1,4 +1,7 @@
 //Problem link - https://leetcode.com/problems/unique-paths/submissions/
+//Video link - https://www.youtube.com/watch?v=t_f0nwwdg5o&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2&index=18
+
+//Time and space complexity - O(mn)
 class Solution {
 public:
     int uniquePaths(int m, int n) {
@@ -21,5 +24,25 @@ public:
     int totalWays  = getAns(currRow+1,currColumn,m,n,dp)+getAns(currRow,currColumn+1,m,n,dp);//one time going right and one time going down
         return dp[currRow][currColumn] = totalWays;
 }
+};
+
+//MOST EFFICIENT ALGO
+/*
+Total turns to be taken is (m+n-2) (Down = no. of rows -1)(Right = no. of columns -1)
+So ans would be (m+n-2)C(m-1) or (m+n-2)C(n-1)
+*/
+//Time complexity - O(min(m,n))
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        int N= m+n-2, R=min(m,n)-1;
+        double ans = 1;
+        for(int i=1;i<=R;i++)
+        {
+            //ans = ans * (N-i)/(R-i); DON'T USE THIS FORMULA
+            ans =ans * (N-R+i)/i;   //DON'T USE COMPOUND OPERATOR HERE
+        }
+        return int(ans);
+    }
 };
 

@@ -45,7 +45,18 @@ for rows = 5
 */
 
 //Pascal value at r row and c column is (r-1)C(c-1)
+/*Way to calculate nCr->
 
+
+		duble ans = 1;
+        for(int i=1;i<=R;i++)
+        {
+            //ans = ans * (N-i)/(R-i); DON'T USE THIS FORMULA
+            ans =ans * (N-R+i)/i;   //DON'T USE COMPOUND OPERATOR HERE
+        }
+        return int(ans);
+
+*/
 
 
 //Striver best solution
