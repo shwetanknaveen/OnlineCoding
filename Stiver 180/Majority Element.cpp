@@ -14,6 +14,8 @@ public:
                 count++;
             else count--;
         }
+        //Only that element will be retained in ans whose count woudn't have been zero. Obviously our ans has count greater than
+        // n/2 so it will reside in ans after the loop
         return ans;
     }
 };
