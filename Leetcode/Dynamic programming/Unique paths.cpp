@@ -31,7 +31,7 @@ public:
 Total turns to be taken is (m+n-2) (Down = no. of rows -1)(Right = no. of columns -1)
 So ans would be (m+n-2)C(m-1) or (m+n-2)C(n-1)
 */
-//Time complexity - O(min(m,n))
+//Time complexity - O(min(m,n)), Space complexity -> O(1)
 class Solution {
 public:
     int uniquePaths(int m, int n) {
