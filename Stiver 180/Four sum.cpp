@@ -1,5 +1,6 @@
 //Problem link - https://leetcode.com/problems/4sum/ 
 //Video link - https://www.youtube.com/watch?v=4ggF3tXIAp0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=22
+//Time complexity -> O(n^3) Space complexity -> O(1)
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
