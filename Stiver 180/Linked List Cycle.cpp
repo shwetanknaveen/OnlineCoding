@@ -15,7 +15,7 @@ public:
         ListNode *slow,*fast;
         slow = fast = head;
         
-        while(fast&&fast->next&&fast->next->next)//good to check pointer itself before checking its next
+        while(fast && fast->next)//good to check pointer itself before checking its next
         {
             slow = slow->next;
             fast = fast->next->next;
