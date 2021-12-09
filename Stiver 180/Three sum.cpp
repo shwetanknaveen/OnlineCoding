@@ -1,5 +1,7 @@
 //Problem link - https://leetcode.com/problems/3sum/
+//Video link - https://www.youtube.com/watch?v=onLoX6Nhvmg&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=42
 //Time complexity -> O(n^2) Space complexity -> O(1)
+//Also see four sum problem
 
 class Solution {
 public:
