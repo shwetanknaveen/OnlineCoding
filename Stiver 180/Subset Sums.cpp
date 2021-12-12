@@ -1,7 +1,7 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/subset-sums2234/1#
 //Video link - https://www.youtube.com/watch?v=rYkfBRtMJr8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=52
 
-
+//Approach -1 Recursive Approach	Time complexity O(2^N)
 #include<bits/stdc++.h> 
 using namespace std; 
 class Solution
@@ -48,4 +48,54 @@ int main()
         cout<<endl;
     }
     return 0;
-}  
+}
+
+//Approach 2 -> Brute force, Power set generation using bit manipulation
+//Time complexity->   O(N * 2^N)
+
+#include<bits/stdc++.h> 
+using namespace std; 
+
+class Solution
+{
+public:
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        vector<int> ans;
+        for(int i=0; i<(1<<N); i++)//All possible combinations 2^N = 1<<N
+        {
+            int sum = 0;
+            for(int j=0;j<N;j++)
+            {
+                if(i & (1<<j))//check in that combination that our jth number from array is present or not
+                sum += arr[j];//if present then add
+            }
+            ans.push_back(sum);
+        }
+        
+        return ans;
+    }
+};
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int N;
+        cin>>N;
+        vector<int> arr(N);
+        for(int i = 0 ; i < N ; i++){
+            cin >> arr[i];
+        }
+        Solution ob;
+        vector<int> ans = ob.subsetSums(arr,N);
+        sort(ans.begin(),ans.end());
+        for(auto sum : ans){
+            cout<< sum<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends
