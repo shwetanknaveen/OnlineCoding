@@ -2,7 +2,7 @@
 //Video link - https://www.youtube.com/watch?v=RIn3gOkbhQE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=54
 
 //Approach -1 Power set methond using bit manipulation
-//Time complexity -> O(n * 2^n) where n is size of set, Space complexity -> O(n)
+//Time complexity -> O(n * 2^n) where n is size of set, Space complexity -> O(2^n) as there are 2^n subsets
 class Solution {
 public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
