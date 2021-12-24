@@ -29,7 +29,8 @@ public:
 };
 
 //Approach 2-> Recursion
-
+//Time complexity -> O(n * 2^n) where n is size of set, Space complexity -> O(n) to store ds
+//there are 2^n subsets and each subset will take O(n) time to get copied in ans.
 class Solution {
 public:
     void findSubsets(int ind,vector<int> &nums,vector<vector<int>> &ans,vector<int> &ds)
