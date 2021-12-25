@@ -1,6 +1,10 @@
 //Problem link - https://leetcode.com/problems/combination-sum-ii/
 //Video link - https://www.youtube.com/watch?v=G1fRTGRxXU8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=51
 
+
+//Time complexity -> O(n * 2^n) where n is size of set, Space complexity -> O(n) to store ds
+//there are 2^n subsets and each subset will take O(n) time to get copied in ans.
+
 class Solution {
 public:
     void findCombSum2(vector<int> &candidates,int target,int ind,vector<int> &ds, vector<vector<int>> &ans)
