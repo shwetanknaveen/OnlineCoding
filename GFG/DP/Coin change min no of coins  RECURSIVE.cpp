@@ -2,7 +2,7 @@
 class Solution
 {
 	
-	//here dp[n][target] means min no. of coins that can made up total = target
+	//here dp[n][target] means min no. of coins that can make up total = target
     
     public:
     int minCoinChange(int val[], int target, int n,vector<vector<int>> &dp) {
