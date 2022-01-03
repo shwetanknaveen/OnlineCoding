@@ -1,4 +1,4 @@
-//Problem Link-https://leetcode.com/problems/generate-parentheses/submissions/
+//Problem Link- https://leetcode.com/problems/generate-parentheses/submissions/
 //Aditya verma link -  https://www.youtube.com/watch?v=eyCj_u3PoJE&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=17
 class Solution {
 public:
@@ -29,6 +29,46 @@ public:
             generator(open,close-1,output2,list);
             
         }
+        
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> list;
+        generator(n,n,"",list);
+        return list;
+    }
+};
+
+
+//Following code also work with simpler body
+
+class Solution {
+public:
+    void generator(int open,int close,string output,vector<string> &list){
+        if(open>close) return;//can't be balanced as ) has been used more than (
+        if(open == 0 && close ==0)
+        {
+            list.push_back(output);
+            return;
+        }
+        if(open == 0 && close != 0)
+        {
+            while(close--)
+            {
+                output.push_back(')');
+            }
+            list.push_back(output);
+            return;
+        }
+        
+        	//when non of above if conditions were right and control didn't "return"
+            string output1 = output;
+            string output2 = output;
+            output1.push_back('(');
+            output2.push_back(')');
+            generator(open-1,close,output1,list);
+            generator(open,close-1,output2,list);
+            
+        
         
     }
     vector<string> generateParenthesis(int n) {

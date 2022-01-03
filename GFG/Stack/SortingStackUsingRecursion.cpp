@@ -3,7 +3,8 @@
 //Aditya verma referal video link in which he solved similar question - sorting a vector using recursion
 //https://www.youtube.com/watch?v=AZ4jEY_JAVc&t=1550s
 
-
+//Time complexity -> O(n^2)
+//T(n) = T(n-1) + O(n)	//O(n) is for insert()
 
 /*The structure of the class is
 class SortedStack{
