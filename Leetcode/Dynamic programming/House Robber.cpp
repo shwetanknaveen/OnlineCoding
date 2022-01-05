@@ -18,7 +18,7 @@ public:
         return maxProfitUptoHere[look];
     }
     int rob(vector<int>& nums) {
-        vector<int> maxProfitUptoHere;
+        vector<int> maxProfitUptoHere;	`//our dp array
         for(int i=0;i<nums.size();i++)
             maxProfitUptoHere.push_back(-1);
        return getAns(0,maxProfitUptoHere,nums);//we start looking from index=0

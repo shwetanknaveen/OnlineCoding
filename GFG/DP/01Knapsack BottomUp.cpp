@@ -17,7 +17,7 @@
         {
             for(int j=1;j<=W;j++)
             {
-                if(j>=wt[i-1])//ith element is wt[i-1] as its index is from 0
+                if(j>=wt[i-1])//ith element has weight wt[i-1] as its index is from 0
                 {
                     dp[i][j] = max(val[i-1] + dp[i-1][j-wt[i-1]],	dp[i-1][j]);
                     		//include ith element					don't include it and hence don't

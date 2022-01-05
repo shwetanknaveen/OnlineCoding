@@ -6,10 +6,7 @@ class Solution
     public:
     int knapSack(int W, int wt[], int val[], int n) 
     { 
-    vector<vector<int>> dp(n+1,vector<int>(W+1));
-    for (int i = 0; i < n+1; i++)
-        for (int j = 0; j < W + 1; j++)
-            dp[i][j] = -1;
+    vector<vector<int>> dp(n+1,vector<int>(W+1,-1));
     return knapSackRec(W, wt, val, n, dp);
     }
     int knapSackRec(int W,int wt[],int val[],int n,vector<vector<int>> &dp)
@@ -32,5 +29,31 @@ class Solution
             dp[n][W] = knapSackRec(W,wt,val,n-1,dp);
             return dp[n][W];
         }
+    }
+};
+
+//Above code with using index variable ind
+
+class Solution
+{
+    public:
+    int knapSackHelp(int W,int wt[],int val[],int n,int ind,vector<vector<int>> &dp)
+    {
+        if(W==0 || ind>=n) return 0;//if ind>=N, it means that we are exploring outside given array
+        
+        if(dp[ind][W] != -1) return dp[ind][W];
+        
+        if(W>=wt[ind])
+        dp[ind][W] = max(val[ind] + knapSackHelp(W-wt[ind],wt,val,n,ind+1,dp),
+                                    knapSackHelp(W,wt,val,n,ind+1,dp));
+        else
+        dp[ind][W] = knapSackHelp(W,wt,val,n,ind+1,dp);
+        
+        return dp[ind][W];
+    }
+    int knapSack(int W, int wt[], int val[], int n) 
+    { 
+       vector<vector<int>> dp(n+1,vector<int>(W+1,-1));
+       return knapSackHelp(W,wt,val,n,0,dp);//initially we start exploring from the first index hence ind=0
     }
 };

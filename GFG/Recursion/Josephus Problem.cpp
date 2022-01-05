@@ -47,7 +47,7 @@ class Solution {
     }
 };
 
-/*exact and easiest implementation as shown in mapping at 14:28 in above video
+/*exact and EASIEST implementation as shown in mapping at 14:28 in above video
 (Sub problem)->(Original problem)
 0->3
 1->4
