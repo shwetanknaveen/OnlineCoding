@@ -1,5 +1,7 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/minimum-sum-partition3317/1#
 //Aditya verma - https://www.youtube.com/watch?v=-GtpxG6l_Mc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=11
+
+//Approach -1 Bottom Up approach
 class Solution{
 	
   public:
@@ -66,3 +68,37 @@ class Solution{
 	    
 	} 
 };
+
+//Approach 2- Top down approach that is recursive approach
+
+
+class Solution{
+
+  public:
+    int knapSack(int arr[],int n,int ind,vector<vector<int>> &dp,int W)//simple 01 knapsack
+    {
+        if(W==0 || ind>=n) return 0;
+        
+        if(dp[ind][W] != -1) return dp[ind][W];
+        
+        if(W>=arr[ind])
+        dp[ind][W] = max(arr[ind] + knapSack(arr,n,ind+1,dp,W-arr[ind]),
+                        knapSack(arr,n,ind+1,dp,W));
+        else
+        dp[ind][W] = knapSack(arr,n,ind+1,dp,W);
+        
+        return dp[ind][W];
+        
+    }
+	int minDifference(int arr[], int n)  { 
+	    int totalSum=0;
+	    for(int i=0;i<n;i++)
+	    totalSum += arr[i];
+	    int target = totalSum/2;//difference will be minimum when one of subset will have a sum as close as to totalSum/2
+	    vector<vector<int>> dp(n+1,vector<int>(target + 1, -1));
+	    int subSet1 = knapSack(arr,n,0,dp,target);//get the sum of one subset as close as totalSum/2
+	    int subSet2 = totalSum - subSet1;
+	    return abs(subSet2-subSet1);
+	} 
+};
+
