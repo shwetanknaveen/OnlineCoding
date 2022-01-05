@@ -1,5 +1,7 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/perfect-sum-problem5633/1#
 //Aditya verma link - https://www.youtube.com/watch?v=F7wqWbqYn9g&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=9
+
+//Approach 1 -> Bottom up
 class Solution{
 public:
 	int perfectSum(int arr[], int N, int sum)
@@ -40,6 +42,39 @@ public:
         }
         int count = dp[N][sum];
         return count%modulo;//no. of subsets upto here (considering all N elements) which have sum = sum
+	}
+	  
+};
+
+//Approach 2 -> Top down that is recursive approach
+class Solution{
+
+	public:
+	int perfectSumCount(int arr[],int n,int sum,int ind,int &mod,vector<vector<int>> &dp)
+	{
+	    if(sum==0) return 1;//if required sum is 0 then there is always 1 way to get it with picking no element
+	    if(ind>=n) return 0;//if required sum is not 0 and we are exploring outside array (i.e., ind>=n) then there is 
+	    					//no possible way
+	    
+	    if(dp[ind][sum] != -1) return dp[ind][sum]%mod;
+	    
+	    if(sum>=arr[ind])
+	    dp[ind][sum] = perfectSumCount(arr,n,sum-arr[ind],ind+1,mod,dp) + perfectSumCount(arr,n,sum,ind+1,mod,dp);
+	    				/*We take the current element and count that		We don't take current element hence we skip it
+	    				how many subsets are there which have sum			and count with further elements that how many
+	    				= sum-arr[ind]										subsets are there with sum = sum
+						*/
+	    else
+	    dp[ind][sum] = perfectSumCount(arr,n,sum,ind+1,mod,dp);
+	    //if current element has value greater than required sum then we have no other option but to skip it
+	    
+	    return dp[ind][sum]%mod;
+	}
+	int perfectSum(int arr[], int n, int sum)
+	{
+        vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
+        int mod = pow(10,9) + 7;
+        return perfectSumCount(arr,n,sum,0,mod,dp);//initially we start exploring from the first index hence ind=0
 	}
 	  
 };

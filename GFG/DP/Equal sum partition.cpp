@@ -81,6 +81,12 @@ public:
         int totalSum = 0;
         for(int i=0;i<N;i++)
             totalSum += arr[i];
+        /*
+		NOTE -> We can use for each loop for array if it's declared in the same scope like as shown here-
+		https://www.geeksforgeeks.org/g-fact-40-foreach-in-c-and-java/
+		but we can't use it in some other function where it is passed like here
+		*/    
+        
         if(totalSum&1) return 0;//if total sum is odd then we can't have equal partition at all
         vector<vector<int>> dp(totalSum/2+1,vector<int>(N+1,-1));//we will be passing totalSum/2 hence full dp array for totalSum won't be required
         //dp[j][i] means that whether we can have a sum = j considering elements upto ith position in the given arr                        
