@@ -21,10 +21,10 @@ class Solution {
         int l1=A.length(), l2=B.length();
         vector<vector<int>> dp(l1+1,vector<int>(l2+1,-1));
         
-        int ans=0,startIndStrB = 0;
-        for(int i=0;i<l2;i++)//since we can't skip characters in string B hence we check possibility by starting string B
+        int ans=0;
+        for(int startIndStrB=0;startIndStrB<l2;startIndStrB++)//since we can't skip characters in string B hence we check possibility by starting string B
         					//at its every index
-        ans = max(ans,LCS(A,B,l1,l2,0,i,dp));
+        ans = max(ans,LCS(A,B,l1,l2,0,startIndStrB,dp));
         
         return ans;
     }

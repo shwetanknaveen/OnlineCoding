@@ -3,8 +3,11 @@
 
 class Solution {
 public:
+	/*
+	dp[i][j] is the length of longest common subsequence in string A from index 0 to i and string B from index 0 to j
+	*/
     int LCS(string &A,string &B,int &l1,int &l2,int ind1,int ind2,vector<vector<int>> &dp)
-    //passing string A and B not as reference thrown TLE sice it had to be copied many time
+    //passing string A and B not as reference thrown TLE since it had to be copied many time
     {
         if(ind1>=l1 || ind2>=l2) return 0;//if we are searching outside the strings then there can't be common subsequence
         
