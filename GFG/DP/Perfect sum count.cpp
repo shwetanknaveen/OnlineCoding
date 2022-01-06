@@ -20,7 +20,8 @@ public:
                         
         for(int i = 1;i<=N;i++)
         {
-            for(int j=1;j<=sum;j++)
+            for(int j=0;j<=sum;j++)//we don't start from j=1 because our required sum itself can be 0.See base
+									//condition of top down code below
             {
             	//we will use arr[i-1] for ith element in arr since its indexing is from 0
                 if(arr[i-1]<=j)//element at ith position has value less than or equal to j
@@ -52,9 +53,20 @@ class Solution{
 	public:
 	int perfectSumCount(int arr[],int n,int sum,int ind,int &mod,vector<vector<int>> &dp)
 	{
+		/*
 	    if(sum==0) return 1;//if required sum is 0 then there is always 1 way to get it with picking no element
 	    if(ind>=n) return 0;//if required sum is not 0 and we are exploring outside array (i.e., ind>=n) then there is 
 	    					//no possible way
+	    */
+	    //ABOVE BASE CONDITION DOESN'T WORK WHEN OUR REQUIRED SUM IS ZERO AND ARRAY ITSELF HAS ZEROES-ABHAY ARVINDA
+	    //following base codition works
+	    //e.g., for input array [0 0 1] and required sum = 0, ans should be 4 and not 1. We will get 4 only when we explore
+	    //whole array
+	    if(ind>=n)//explored whole array
+        {
+            if(sum==0) return 1;//got the target
+            else return 0;
+        }
 	    
 	    if(dp[ind][sum] != -1) return dp[ind][sum]%mod;
 	    

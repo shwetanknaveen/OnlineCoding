@@ -1,10 +1,15 @@
 //Problem link - https://leetcode.com/problems/target-sum/
 //Aditya verma - Target sum - https://www.youtube.com/watch?v=Hw6Ygp3JBYw&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=12
 //Aditya verma - No. of subsets with given difference - https://www.youtube.com/watch?v=ot_XBHyqpFc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=11
+
+//Approach 1 -> Bottom up approach
 class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int target) {//target will act as difference here->count no. of subsets with 
     													//given difference
+		target = abs(target);//target can be a large negative value too hence in that case subsetSum = (target + totalSum)/2
+							//can be a negative value and hence allocation of dp vector will be an issue
+							//We know that diff is target that is S1-S2=target or S2-S1=target  													
         int totalSum = 0;
         
         for(int i: nums)
@@ -45,7 +50,8 @@ public:
         
         for(int i = 1;i<=N;i++)
         {
-            for(int j=1;j<=subsetSum;j++)
+            for(int j=0;j<=subsetSum;j++)//we don't start from j=1 because our required sum itself can be 0.See base
+										//condition of top down code below
             {
             					//we will use nums[i-1] for ith element in arr since its indexing is from 0
                 if(nums[i-1]<=j)//element at ith position has value less than or equal to j
@@ -68,5 +74,50 @@ public:
             }
         }
         return dp[N][subsetSum];
+    }
+};
+
+//Approach 2 -> Top down approach
+class Solution {
+public:
+    int countSubsets(vector<int> &nums,int target,vector<vector<int>> &dp,int ind)
+    {
+        /*
+        if(target==0) return 1;
+        if(ind>=nums.size()) return 0;
+        */
+        
+        //ABOVE BASE CONDITION DOESN'T WORK WHEN OUR REQUIRED SUM IS ZERO AND ARRAY ITSELF HAS ZEROES-ABHAY ARVINDA
+	    //following base codition works
+	    //e.g., for input array [0 0 1] and required sum = 0, ans should be 4 and not 1. We will get 4 only when we explore
+	    //whole array
+        //Above base condition doesn't work as suppose our original target itself is 0 then we can't return simply looking
+        //at the target value as 0 and without exploring the whole array that how many subsets are there which have sum=0
+        
+        if(ind>=nums.size())//explored whole array
+        {
+            if(target==0) return 1;//got the target
+            else return 0;
+        }
+        
+        if(dp[ind][target] != -1) return dp[ind][target];
+        
+        if(target>=nums[ind])
+            dp[ind][target] = countSubsets(nums,target-nums[ind],dp,ind+1) + countSubsets(nums,target,dp,ind+1);
+        else
+            dp[ind][target] = countSubsets(nums,target,dp,ind+1);
+        return dp[ind][target];
+    }
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int totalSum = 0;
+        for(int i:nums)
+            totalSum += i;
+        target = abs(target);//target can be a large negative value too hence in that case subsetSum = (target + totalSum)/2
+							//can be a negative value and hence allocation of dp vector will be an issue
+							//We know that diff is target that is S1-S2=target or S2-S1=target  													
+        int newTarget = (totalSum+target)/2;
+        if((totalSum+target)&1) return 0;
+        vector<vector<int>> dp(nums.size()+1,vector<int>(newTarget+1,-1));
+        return countSubsets(nums,newTarget,dp,0);
     }
 };
