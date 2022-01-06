@@ -48,3 +48,34 @@
                                             //above in the comment
     }
 };
+
+//Writing above code with ind varaible as index
+class Solution {
+  public:
+    long long int unboundedKnapsack(int S[],int m,int W,vector<vector<long long int>> &dp,int ind)
+    {
+        if(W==0) return 1;//got the required sum hence this is a possible way
+        if(ind>=m) return 0;//Haven't got reuqired sum i.e., W!=0 and exploring outside array i.e, ind>=m hence no way
+        
+        if(dp[ind][W] != -1) return dp[ind][W];
+        
+        if(W>=S[ind])
+        dp[ind][W] = unboundedKnapsack(S,m,W-S[ind],dp,ind)				+			unboundedKnapsack(S,m,W,dp,ind+1);
+        			   /*We include the coin but we call again with ind             We don't include the coin hence weight
+					   since we have unlimited coin supply i.e., here we            remains unchanged and element is removed
+					   are dealing unbounded knapsack                               and we explore next with ind+1
+					   */
+        
+        else
+        dp[ind][W] = unboundedKnapsack(S,m,W,dp,ind+1);//if current coin is larger than required remaining sum then we can't take it
+        
+        return dp[ind][W];
+    }
+    long long int count(int S[], int m, int n) {
+
+        int W=n;
+        vector<vector<long long int>> dp(m+1,vector<long long int>(W+1,-1));
+        return unboundedKnapsack(S,m,W,dp,0);
+    }
+};
+

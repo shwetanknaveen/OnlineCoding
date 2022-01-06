@@ -1,4 +1,5 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/number-of-coins1824/1#
+//Video link - https://www.youtube.com/watch?v=I-l6PBeERuc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=16
 class Solution
 {
 	
@@ -31,6 +32,28 @@ class Solution
 	    																		//for more varied test cases, to protect against wrap
 	    																		//arounds we can return INT_MAX - V in place of INT_MAX -1
 	    																		
+	} 
+	  
+};
+
+
+//Above code using index variable
+class Solution{
+
+	public:
+	int getAns(int coins[],int M,int V,int index,vector<vector<int>> &dp)
+	{
+	    if(V==0) return 0;
+	    if(index>=M || V<0) return INT_MAX-1;
+	    if(dp[index][V] != -1) return dp[index][V];
+	    dp[index][V] = min(getAns(coins,M,V,index+1,dp),1+getAns(coins,M,V-coins[index],index,dp));
+	    return dp[index][V];
+	    
+	}
+	int minCoins(int coins[], int M, int V) 
+	{ 
+	    vector<vector<int>> dp(M+1,vector<int>(V+1,-1));
+	    return getAns(coins,M,V,0,dp) <= V ? getAns(coins,M,V,0,dp) : -1;
 	} 
 	  
 };
