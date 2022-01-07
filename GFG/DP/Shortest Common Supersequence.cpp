@@ -24,5 +24,8 @@ class Solution
     {
         vector<vector<int>> dp(m+1,vector<int>(n+1,-1));
         return (m+n-LCS(X,Y,0,0,dp));
+        
+        //Naive approach to construct supersequence is to just append two strings but to get supersequence of minimum length
+        //we have to remove the common part and that is LCS
     }
 };
