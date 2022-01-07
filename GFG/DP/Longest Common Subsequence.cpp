@@ -1,6 +1,11 @@
 //Problem link - https://leetcode.com/problems/longest-common-subsequence/
 //Video link - https://www.youtube.com/watch?v=hR3s9rGlMTU&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=21
 
+//VERY VERY IMPORTANT NOTE-> IT IS NOT NECESSARY THAT DP MATRIX IS FILLED SAME IN BOTH TOP DOWN AND BOTTOM UP METHOD
+//HERE FOR EXAMPLE DP[i][j] IN TOP DOWN METHOD MEANS i and j AS STARTING INDICES AND IN BOTTOM UP METHOD AS ENDING INDICES
+//OF THE STRINGS
+
+
 class Solution {
 public:
 	/*
@@ -27,7 +32,7 @@ public:
     int longestCommonSubsequence(string text1, string text2) {
         int l1=text1.length(), l2=text2.length();
         vector<vector<int>> dp(l1+1,vector<int>(l2+1,-1));
-        
+        int ans = LCS(text1,text2,l1,l2,0,0,dp);
 		/* //CODE TO PRINT THE ACTUAL LCS
 		string LCSsubseq = "";
         int i=l1,j=l2;
@@ -49,10 +54,33 @@ public:
         reverse(LCSsubseq.begin(),LCSsubseq.end());
         cout<<"LCS = "<<LCSsubseq<<endl;
 
+		//ABOVE CODE WORKS WHEN WE HAVE FILLED DP USING BOTTOM UP METHOD AND THERE DP[L1][L2] CONTAINS THE MAXIMUM VALUE
+		//BUT WHEN WE FILL THE DP USING TOP DOWN METHOD,OUT MAX VALUE IS IN DP[0][0] SINCE HERE IN TOP DOWN CODE ind1 and
+		//ind2 ARE STARTING INDICES HENCE WE FIND LCS IN FOLLOWING WAY
 		
+		string LCSsubseq = "";
+        int i=0,j=0;
+        while(i<l1 && j<l2)
+        {
+            if(text1[i]==text2[j])
+            {
+                LCSsubseq.push_back(text1[i]);
+                i++;//moving towards
+                j++;//lower right corner
+            }
+            else
+            {
+                if(dp[i+1][j]>dp[i][j+1])
+                    i++;
+                else j++;//moving towards max cell
+            }
+        }
+        //Here no need to reverse as i and j were our starting indices hence we got the subsequence in right order
+        cout<<"LCS = "<<LCSsubseq<<endl;
+        
 		*/
 		
-		int ans = LCS(text1,text2,l1,l2,0,0,dp);
+		
         return ans;
     }
 };
