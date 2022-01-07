@@ -27,6 +27,32 @@ public:
     int longestCommonSubsequence(string text1, string text2) {
         int l1=text1.length(), l2=text2.length();
         vector<vector<int>> dp(l1+1,vector<int>(l2+1,-1));
-        return LCS(text1,text2,l1,l2,0,0,dp);
+        
+		/* //CODE TO PRINT THE ACTUAL LCS
+		string LCSsubseq = "";
+        int i=l1,j=l2;
+        while(i>0 && j>0)//if any of i or j is 0 then corresponding string is empty
+        {
+            if(text1[i-1]==text2[j-1])
+            {
+                LCSsubseq.push_back(text1[i-1]);
+                i--;	//moving towards 
+                j--;	//upper left corner
+            }
+            else
+            {
+                if(dp[i-1][j]>dp[i][j-1])
+                    i--;
+                else j--;	//moving towards max cell
+            }
+        }
+        reverse(LCSsubseq.begin(),LCSsubseq.end());
+        cout<<"LCS = "<<LCSsubseq<<endl;
+
+		
+		*/
+		
+		int ans = LCS(text1,text2,l1,l2,0,0,dp);
+        return ans;
     }
 };
