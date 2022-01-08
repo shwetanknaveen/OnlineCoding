@@ -8,8 +8,9 @@ dp[i][j] represents cost of multiplying matrices from ith number to jth number
 STEP -1 -> Identify right initial values of i and j
 STEP -2 -> Write the base condition appropriately
 STEP -3 -> Decide how the partition between i to j will happen with help of k
-	`		Here we have to group-> matrices from i to k and k+1 to j. So we see here that we can't take k to j as when 
-			k reaches j, k+1 will throw error
+		   Here we have to group-> matrices from i to k and k+1 to j. So we see here that we can't take k to j as when 
+		   k reaches j, k+1 will throw error
+STEP -4 -> Depending upon k value, we calculate the temp value and then store the minimum value in the dp matrix
 */
 class Solution{
 public:
@@ -21,6 +22,7 @@ public:
         dp[i][j] = INT_MAX;
         for(int k=i;k<j;k++)
         {
+        	//More optimisation can be done here, look in "Palindromic partitioning Minimum Partitions" code
             dp[i][j] = min(dp[i][j],solve(arr,i,k,dp)	+	solve(arr,k+1,j,dp)	+	arr[i-1]*arr[k]*arr[j]);
             					/*cost of multiplying		cost of multiplying 	cost of multiplying these groups
             						matrices from ith 		matrices from (k+1)th	first dimension of ith matrix is
