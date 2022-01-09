@@ -36,6 +36,8 @@ class Solution
 												and there are k-1 floors
 												lower than this	
             						*/
+            						
+            //here too we can optimize more like we did it in palindrom partitioning
         }
         return dp[e][f];
     }
