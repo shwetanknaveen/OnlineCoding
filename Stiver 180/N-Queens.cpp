@@ -4,21 +4,23 @@
 
 class Solution {
 public:
+	//Queens are being filled in row major order hence once new queen gets its position, no need to check for validity on 
+	//left,right, lower left diagonal, lower right diagonal and lower side as queen in each row is filled for the first time
     bool isValid(int i,int j,vector<vector<int>> &board)//is placing a queen at board[i][j] is valid?
     {
         for(int x=i-1;x>=0;x--)//checking upwards
         {
             if(board[x][j]!=-1) return false;
         }
-        for(int x=i+1;x<board.size();x++)//checking downwards
+        for(int x=i+1;x<board.size();x++)//checking downwards		NO NEED TO CHECK
         {
             if(board[x][j]!=-1) return false;
         }
-        for(int x=j-1;x>=0;x--)//checking left
+        for(int x=j-1;x>=0;x--)//checking left					NO NEED TO CHECK
         {
             if(board[i][x]!=-1) return false;
         }
-        for(int x=j+1;x<board.size();x++)//checking right
+        for(int x=j+1;x<board.size();x++)//checking right		NO NEED TO CHECK
         {
             if(board[i][x]!=-1) return false;
         }
@@ -32,11 +34,11 @@ public:
             if(board[x][y] != -1) return false;
         }
         
-        for(int x=i+1,y=j-1;x<board.size() && y>=0;x++,y--)//checking lower left corner
+        for(int x=i+1,y=j-1;x<board.size() && y>=0;x++,y--)//checking lower left corner 	NO NEED TO CHECK
         {
             if(board[x][y] != -1) return false;
         }
-        for(int x=i+1,y=j+1;x<board.size() && y<board.size();x++,y++)//checking lower right corner
+        for(int x=i+1,y=j+1;x<board.size() && y<board.size();x++,y++)//checking lower right corner		NO NEED TO CHECK
         {
             if(board[x][y] != -1) return false;
         }
