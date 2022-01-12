@@ -1,7 +1,8 @@
 //Problem link - https://leetcode.com/problems/permutations-ii/
 //Video link - https://www.youtube.com/watch?v=is_T6uzlTyg
 
-
+//Time complexity O(n! x n)
+//Space complexity O(n^2)	-->Unordered set is at each level of recursion
 class Solution {
 public:
     void solve(vector<int> &nums,vector<vector<int>> &ans,int ind)
@@ -30,6 +31,36 @@ public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<vector<int>> ans;
         solve(nums,ans,0);
+        return ans;
+    }
+};
+
+//We can check for duplicacy in following way too
+
+class Solution {
+public:
+    void solve(vector<int> &nums,vector<vector<int>> &ans,int ind, map<vector<int>,bool> &is_vector_included)
+    {
+        if(ind == nums.size() && !is_vector_included[nums])
+        {
+            ans.push_back(nums);
+            is_vector_included[nums] = true;
+            return;
+        }
+        
+        for(int i=ind;i<nums.size();i++)
+        {
+            swap(nums[i],nums[ind]);
+            solve(nums,ans,ind+1,is_vector_included);
+            swap(nums[i],nums[ind]);
+            	
+        }
+        
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> ans;
+        map<vector<int>,bool> is_vector_included;
+        solve(nums,ans,0,is_vector_included);
         return ans;
     }
 };
