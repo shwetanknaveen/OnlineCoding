@@ -1,10 +1,13 @@
+//Problem link - https://leetcode.com/problems/sudoku-solver/
+//Video link - https://www.youtube.com/watch?v=FWAIf_EVUKE&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=58
+
 class Solution {
 public:
     bool isValid(int row,int col,vector<vector<char>> &board,char c)
     {
         for(int i=0;i<9;i++)
         {
-            if(board[i][col]==c)
+            if(board[i][col]==c)	//IMPORTANT NOTE -> While comparing char variable c we don't compare like =='c'
                 return false;
             
             if(board[row][i]==c)
