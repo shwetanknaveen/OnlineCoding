@@ -46,9 +46,9 @@ public:
         return true;//default case
     }
     
-    void solve(vector<vector<string>> &ans,vector<vector<int>> &board,int &n,int ind)
+    void solve(vector<vector<string>> &ans,vector<vector<int>> &board,int &n,int row)
     {
-        if(ind==n)//it means we have successfully placed n queens in n rows withing given conditions so push this state
+        if(row==n)//it means we have successfully placed n queens in n rows withing given conditions so push this state
         			//of board into ans
         {
             vector<string> tempStrings;
@@ -69,12 +69,12 @@ public:
         }
         for(int j=0;j<n;j++)//for each row,check in which column we can place the queen.Start checking from first column for each row
         {
-            if(board[ind][j]==-1)//this cell is vacant and has no queen
+            if(board[row][j]==-1)//this cell is vacant and has no queen
             {
-                board[ind][j] = 1;//occupy this cell
-                if(isValid(ind,j,board))//if occupying this cell is valid then check for next row
-                    solve(ans,board,n,ind+1);
-                board[ind][j] = -1;//leave the occupied row so that next options can be explored when recursion call returns to this level
+                board[row][j] = 1;//occupy this cell
+                if(isValid(row,j,board))//if occupying this cell is valid then check for next row
+                    solve(ans,board,n,row+1);
+                board[row][j] = -1;//leave the occupied row so that next options can be explored when recursion call returns to this level
             }
         }
     }
