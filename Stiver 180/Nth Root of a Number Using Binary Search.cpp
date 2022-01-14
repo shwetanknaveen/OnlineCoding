@@ -26,10 +26,10 @@ double getNthRoot(int n, int m) {
     double low = 1;
     double high = m;
     double eps = 1e-6; //for precision upto 5 decimal places
-    
+    double mid;
     while((high - low) > eps) {//search until search space has reduced to required precision
     						//usually this condition for binary search is as low<=high
-        double mid = (low + high) / 2.0; 
+        mid = (low + high) / 2.0; 
         if(multiply(mid, n) < m) {
             low = mid; 
         }
@@ -38,14 +38,11 @@ double getNthRoot(int n, int m) {
         }
     }
     
-    cout << low << " " << high << endl; 
-    
-    // just to check
-    cout << pow(m, (double)(1.0/(double)n)); 
+    return mid; 
 }
 int main() {
 	int n, m;
 	cin >> n >> m; 
-	getNthRoot(n, m); 
+	cout<<"\nAns = "<<getNthRoot(n, m)<<endl; 
 	return 0;
 }
