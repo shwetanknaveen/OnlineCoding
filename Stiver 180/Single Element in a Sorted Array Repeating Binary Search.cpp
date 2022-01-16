@@ -12,6 +12,7 @@ public:
             if(mid&1)//if mid is odd then first occurence of this repeating number should be on the even index before mid
             {
                 if(nums[mid]==nums[mid-1])//it is eqal => left half doesn't contain the number
+                						//if mid is odd then mid-1 won't go less than zero so need to check it
                 {
                     low=mid+1;
                 }

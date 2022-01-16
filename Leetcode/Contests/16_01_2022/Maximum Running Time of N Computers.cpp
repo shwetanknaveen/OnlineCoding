@@ -5,7 +5,7 @@ Intuition=>
 The staright idea, is to use all baterial evenly.
 So we take advantage of all the energy wihout any left.
 In this case, we can run up to sum(A) / n minutes.
-This average value is an upper bounde of the final result.
+This average value is an upper bound of the final result.
 It's great to start with this enviromental intuition.
 
 Explanation=>
