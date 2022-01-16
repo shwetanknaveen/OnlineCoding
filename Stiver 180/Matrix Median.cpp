@@ -20,7 +20,9 @@ int countNumsLessThanEqualToN(vector<vector<int>> &A,int n)//returns count of th
         while(low<=high)
         {
             mid = low+(high-low)/2;
-            if(row[mid]<=n)
+            if(row[mid]<=n)//When we assign low in this fashion that {<= (what we are looking for)} and don't break once we 
+        				//find and leave the breaking condition on (low<=high) then when loop breaks, low points to what we 
+        				//are looking for
                 low = mid+1;
             else 
                 high = mid-1;
@@ -38,7 +40,9 @@ int Solution::findMedian(vector<vector<int> > &A) {
         count = 0;
         mid = low + (high-low)/2;
         count = countNumsLessThanEqualToN(A,mid);
-        if(count<=half)
+        if(count<=half)	//When we assign low in this fashion that {<= (what we are looking for)} and don't break once we find
+        				//and leave the breaking condition on (low<=high) then when loop breaks, low points to what we are
+        				//looking for
             low = mid+1;
         else
             high = mid-1;
