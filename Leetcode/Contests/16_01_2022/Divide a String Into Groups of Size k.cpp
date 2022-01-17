@@ -11,7 +11,7 @@ public:
         if(remLength!=0)
         {
             string temp = s.substr(i,len-i);
-            remLength = ((len/k + 1)*k - len);//how many fill characters we have to fill
+            remLength = k-len%k;;//how many fill characters we have to fill
             while(remLength)
             {
                 temp.push_back(fill);

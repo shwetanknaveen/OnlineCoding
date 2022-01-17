@@ -42,7 +42,7 @@ int Solution::findMedian(vector<vector<int> > &A) {
         count = countNumsLessThanEqualToN(A,mid);
         if(count<=half)	//When we assign low in this fashion that {<= (what we are looking for)} and don't break once we find
         				//and leave the breaking condition on (low<=high) then when loop breaks, low points to what we are
-        				//looking for
+        				//looking for USUALLY
             low = mid+1;
         else
             high = mid-1;
