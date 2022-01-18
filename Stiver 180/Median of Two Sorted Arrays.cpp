@@ -1,7 +1,7 @@
 //Problem link - https://leetcode.com/problems/median-of-two-sorted-arrays/
 //Video link - https://www.youtube.com/watch?v=NTop3VTjmxk&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=66
 //Time complexity - O(min(m,n))
-
+//See the modification of this algorithm in next question "K-th element of two sorted Arrays"
 /*
 We divide numbers into two half. If numbers are even then equal half otherwise left half contains one extra number.
 Left part numbers will always be smaller than numbers in right part
@@ -44,13 +44,17 @@ public:
 							array and cut2		and n2-cut2 from second array
 							from second array
 			*/
+			
+			//if there is no left1,left2 and others then they are assigned accordingly so that they don't violate the
+			//conditions being checked below
             int left1 = cut1 == 0 ? INT_MIN : nums1[cut1-1];//last element of left half of first array
             int left2 = cut2 == 0 ? INT_MIN : nums2[cut2-1]; //last element of left half of second array
             
             int right1 = cut1 == n1 ? INT_MAX : nums1[cut1];//first element of right half of first array
             int right2 = cut2 == n2 ? INT_MAX : nums2[cut2]; //first element of right half of second array
             
-            
+            //left1 will obviously be less than right1 as they are from different half of same sorted array and same case
+            //with left2 and right2
             if(left1 <= right2 && left2 <= right1) {//if partition is right
                 if( (n1 + n2) % 2 == 0 ) //if total no. of numbers is even
                     return (max(left1, left2) + min(right1, right2)) / 2.0; 
