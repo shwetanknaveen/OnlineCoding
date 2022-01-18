@@ -54,7 +54,7 @@ public:
             int right2 = cut2 == n2 ? INT_MAX : nums2[cut2]; //first element of right half of second array
             
             //left1 will obviously be less than right1 as they are from different half of same sorted array and same case
-            //with left2 and right2
+            //with left2 and right2 hence we do cross comparing of left1 with right2 and left2 with right1
             if(left1 <= right2 && left2 <= right1) {//if partition is right
                 if( (n1 + n2) % 2 == 0 ) //if total no. of numbers is even
                     return (max(left1, left2) + min(right1, right2)) / 2.0; 

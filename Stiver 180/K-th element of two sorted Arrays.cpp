@@ -14,7 +14,9 @@ class Solution{
     public:
     int kthElement(int arr1[], int arr2[], int n, int m, int k)
     {
-        if(m<n) return kthElement(arr2,arr1,m,n,k);
+        if(m<n) return kthElement(arr2,arr1,m,n,k);//Here it doesn't throw error if we don't include this line as it was the
+        											//case in previous question because here cut2 is not defined in that way.
+        											//Here this line helps to assure that search space is smaller array
         
         int low = max(0,k-m),//If arr2's size can't make up k numbers then we must choose atleast k-m numbers from arr1.
 							// But if arr2 has more than or equal to k numbers then we are not forced to choose numbers from
