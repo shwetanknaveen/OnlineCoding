@@ -11,7 +11,7 @@ public:
         vector<int> ans(n);
         
         
-        for(int i=2*n-1;i>=0;i--)//We imagine that array is appended ahead of it
+        for(int i=2*n-1;i>=0;i--)//We imagine that array is appended ahead of itself
         {
             while(!stc.empty() && stc.top()<=nums[i%n])
                 stc.pop();
