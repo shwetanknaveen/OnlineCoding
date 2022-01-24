@@ -1,4 +1,4 @@
-//Problem link - https://leetcode.com/problems/lru-cache/submissions/
+//Problem link - https://leetcode.com/problems/lru-cache/
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;

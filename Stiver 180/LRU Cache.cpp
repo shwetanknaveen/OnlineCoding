@@ -1,6 +1,4 @@
 //Problem link - https://leetcode.com/problems/lru-cache/
-#include<bits/stdc++.h>
-using namespace std;
 class LRUCache {
 public:
     class node {
@@ -68,7 +66,7 @@ public:
             m.erase(key_);
             m[key_] = head->next;
         }
-        else {//element not in cache
+        else {
             if (m.size() == cap) {//element not in cache and cache is full
                 node* delnode = tail->prev;//last node will be deleted
                 int delkey = delnode->key;
@@ -90,10 +88,7 @@ public:
         }
     }
 };
-int main()
-{
-	return 0;
-}
+
 
 /**
  * Your LRUCache object will be instantiated and called as such:
