@@ -5,7 +5,7 @@
 //A rotten orange will rot its surrounding oranges first
 class Solution {
 public:
-    void BFS(queue<pair<int,int>> &qu,int &ans,vector<vector<int>> &grid,int &m,int &n)
+    void BFS(queue<pair<int,int>> &qu,int &ans,vector<vector<int>> &grid,int &m,int &n,int &nFresh)
     {
         while(!qu.empty())
         {
@@ -23,24 +23,28 @@ public:
                 flagPropogate = true;
                 grid[i][j-1] = 2;//Now that orange is also rotten
                 qu.push(make_pair(i,j-1));
+                nFresh--;
             }
             if(j+1<n && grid[i][j+1] == 1)//right check
             {
                 flagPropogate = true;
                 grid[i][j+1] = 2;
                 qu.push(make_pair(i,j+1));
+                nFresh--;
             }
             if(i-1>=0 && grid[i-1][j] == 1)//up check
             {
                 flagPropogate = true;
                 grid[i-1][j] = 2;
                 qu.push(make_pair(i-1,j));
+                nFresh--;
             }
             if(i+1<m && grid[i+1][j] == 1)//down check
             {
                 flagPropogate = true;
                 grid[i+1][j] = 2;
                 qu.push(make_pair(i+1,j));
+                nFresh--;
             }
             qu.pop();//remove this orange after checking its surrounding
             }
@@ -51,7 +55,7 @@ public:
     }
     int orangesRotting(vector<vector<int>>& grid) {
         int m = grid.size(),n = grid[0].size(); //grid is (m x n)
-        
+        int nFresh = 0;
         queue<pair<int,int>> qu;// pair<int,int> = pair<i,j>
 
         for(int i=0;i<m;i++)
@@ -61,21 +65,15 @@ public:
                 {
                     qu.push(make_pair(i,j));//Initially all rotten oranges are on queue
                 }
+                if(grid[i][j] == 1)
+                	nFresh++;
             }
         
         //all initial rotten oranges on the queue
         int ans = 0;
-        BFS(qu,ans,grid,m,n);
+        BFS(qu,ans,grid,m,n,nFresh);
         
-        for(int i = 0;i<m;i++)
-        {
-            for(int j = 0;j<n;j++)
-            {
-                if(grid[i][j]==1)
-                   return -1;//if after all possible propagation of rotting, there is still fresh orange on grid then 
-                   			//it means it can't be rotten
-            }
-        }
+        if(nFresh != 0) return -1;	//There are still fresh oranges on the grid after all possible rotting
             
         return ans;
     }
