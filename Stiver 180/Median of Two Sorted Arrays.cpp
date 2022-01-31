@@ -20,6 +20,9 @@ public:
     	//left half, cut2 is defined in such a way that if nums2 becomes empty then there will be out of bound error
     	//hence we alway keep smaller array to nums1 and in this way we manage time complexity as O(min(m,n)) as search
     	//space for binary search is only our first array
+    	//There is one more reason to select first array as smaller array. As if we choose bigger array as first array
+    	//and choose zero elements from it then there won't be enough elements in second array so that they can be on 
+    	//left of median hence cut2 will cause overflow
         if(nums2.size() < nums1.size()) return findMedianSortedArrays(nums2, nums1);
         int n1 = nums1.size();
         int n2 = nums2.size(); 
