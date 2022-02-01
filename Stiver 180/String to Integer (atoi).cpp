@@ -36,13 +36,7 @@ public:
         s = s.substr(i,len-i);
         
         len = s.length();
-        i = len-1;
-        while(i>=0 && (s[i]<'0' || s[i]>'9'))//trailing spaces and characters removal
-            i--;
-        s = s.substr(0,i+1);
-        
-        len = s.length();
-        for(i=0;i<len;i++)//finding inbetween non digit characters
+        for(i=0;i<len;i++)//removing inbetween and(or) end non digit characters
         {
             if(s[i]<'0' || s[i]>'9')
             {
