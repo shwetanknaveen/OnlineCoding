@@ -30,6 +30,7 @@ class Solution
 Formulae for modulus :-
 (ab%m)=((a%m)(b%m))%m
 (a+b)%m = (a%m + b%m)%m
+(a-b)% mod = (a%mod - b%mod + mod)%mod
 */
 //Average time complexity -> O(m+n)
 //Worst case time complexity -> O(mn)
@@ -41,18 +42,20 @@ class Solution
             int msbPwrVal = 1;//it will have value = d^(patLen - 1)
             int d = 26;
             int patLen = pat.length(), txtLen = txt.length();
-            int mod = 50;//We have to keep mod a smaller value
+            int mod = 1000;//We have to keep mod a smaller value
             			//https://stackoverflow.com/questions/68336852/rabin-karp-not-working-for-large-primes-gives-wrong-output
     
-            for(int i=0;i<patLen;i++)
+            for(int i=0;i<patLen-1;i++)//msbPwrVal = d^(patLen - 1)
             {
                 msbPwrVal = (msbPwrVal * d)%mod;
             }
             int txtHash = 0, patHash = 0;
             for(int i=0;i<patLen;i++)
             {
-                txtHash = ((d*txtHash)%mod + txt[i]%mod)%mod;//if there is large mod then we can have overflow here
-                patHash = ((d*patHash)%mod + pat[i]%mod)%mod;
+                txtHash = ((d*txtHash)%mod + txt[i]%mod)%mod;//txtHash = d*txtHash + txt[i]
+                											//(a+b)%m = (a%m + b%m)%m
+                patHash = ((d*patHash)%mod + pat[i]%mod)%mod;//patHash = d*patHash + pat[i]
+                											//(a+b)%m = (a%m + b%m)%m
             }
             vector<int> ans;
             for(int i=0;i<=txtLen-patLen;i++)//last window will be starting from index (txtLen-patLen)
@@ -73,9 +76,10 @@ class Solution
                 //at index = txtLen - patLen - 1
                 if(i<(txtLen-patLen))
                 {
-                    txtHash = (((txtHash-txt[i]*msbPwrVal)*d)%mod + txt[i+patLen])%mod;
-                    if(txtHash<0)//We are taking mods hence txtHash is moded value hence in previous step it may become -ve
-                        txtHash = txtHash + mod;
+                    txtHash = (((txtHash%mod-(txt[i]*msbPwrVal)%mod + mod)%mod * d%mod)%mod + txt[i+patLen])%mod;
+                    //txtHash = (txtHash - (txt[i]*msbPwrVal)) * d + txt[i+patLen]
+                    //(ab%m)=((a%m)(b%m))%m
+                    //(a-b)% mod = (a%mod - b%mod + mod)%mod
                 }
             }
             if(ans.empty()) ans.push_back(-1);
