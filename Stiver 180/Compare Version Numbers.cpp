@@ -51,7 +51,7 @@ public:
             //We can't return 0 on same revision number if strings didn't end becasue further revisions after . may vary
         }
         
-        while(i1<len1)//version1 didn't end ans version2 ended
+        while(i1<len1)//version1 didn't end and version2 ended
         {
             j1=i1;
             while(j1<len1)
@@ -65,7 +65,7 @@ public:
             i1 = j1+1;
             if(num1>0) return 1;
         }
-         while(i2<len2)//version2 didn't end ans version1 ended
+         while(i2<len2)//version2 didn't end and version1 ended
         {
             j2=i2;
             while(j2<len2)
@@ -79,6 +79,6 @@ public:
             i2 = j2+1;
             if(num2>0) return -1;
         }
-        return 0;//default case
+        return 0;//default case->No version is greater than other
     }
 };
