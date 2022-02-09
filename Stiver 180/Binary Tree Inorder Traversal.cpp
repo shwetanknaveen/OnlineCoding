@@ -56,3 +56,47 @@ public:
         return ans;
     }
 };
+
+//Approach 3 - Morris Traversal
+//T(n) = O(n)	S(n) = O(1)
+//Video link - https://www.youtube.com/watch?v=80Zug6D1_r4
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        while(root)
+        {
+            TreeNode *curr = root;//We will create thread from right most node of left subtree to present node and will
+            						//travell to that node using curr
+            if(curr->left)//if root has left child
+            			//We can't push directly this root node val to ans as we are not sure whether we are here
+            			//thorough thread link after covering left subtree or we are here for the first time
+            {
+                curr = curr->left;
+                while(curr->right && curr->right != root)//go to right most node of left subtree
+                    curr=curr->right;
+                if(curr->right != root)//not threaded yet
+                {
+                    curr->right = root;//create the thread
+                    root = root->left;//go to left to cover left subtree as inorder is left->root->right
+                    //no need to push node's value here as it is visited for the first time
+                }
+                else//was threaded
+                {
+                    curr->right = NULL;//break the thread
+                    ans.push_back(root->val);//visiting the node for second time hence push the node value to ans as
+											//in inorder it is left->root->right                    		
+                    root = root->right;//left subtree has been covered hence now cover the right one
+                    
+                    					
+                }
+            }
+            else//root hasn't left child
+            {
+                ans.push_back(root->val);//inorder is left->root->right hence push this value before going to right
+                root = root->right;
+            }
+        }
+        return ans;
+    }
+};

@@ -50,3 +50,46 @@ public:
         return ans;
     }
 };
+
+//Approach 3 - Morris Traversal
+//T(n) = O(n)	S(n) = O(1)
+//Video link - https://www.youtube.com/watch?v=80Zug6D1_r4
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        while(root)
+        {
+            TreeNode *curr = root;//We will create thread from right most node of left subtree to present node and will
+            						//travell to that node using curr
+            if(curr->left)//if root has left child
+            			//We can't push directly this root node val to ans as we are not sure whether we are here
+            			//thorough thread link after covering left subtree or we are here for the first time
+            {
+                curr = curr->left;
+                while(curr->right && curr->right != root)//go to right most node of left subtree
+                    curr=curr->right;
+                if(curr->right != root)//not threaded yet
+                {
+                    ans.push_back(root->val);//it means root was visited for first time and this is preorder hence push this
+                    						//node's val to ans
+                    curr->right = root;//create the thread
+                    root = root->left;//go to left to cover left subtree as preorder is root->left->right
+                }
+                else//was threaded
+                {
+                    curr->right = NULL;//break the thread
+                    root = root->right;//left subtree has been covered hence now cover the right one
+                    					//no need to push this node value as we are here for the second time using thread
+                    					//link
+                }
+            }
+            else//root hasn't left child
+            {
+                ans.push_back(root->val);//preorder is root->left->right hence push this value before going to right
+                root = root->right;
+            }
+        }
+        return ans;
+    }
+};
