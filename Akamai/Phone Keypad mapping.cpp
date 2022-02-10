@@ -18,7 +18,7 @@ class Solution{
         Solution(){
             vector<string> keyPad = {"abc","def","ghi","jkl","mnop","qrst","uvw","xyz"};
             for(int index = 0; index<keyPad.size(); index++){
-                keypadMapping['2'+index] = keyPad[index].size();
+                keypadMapping['2'+index] = keyPad[index].size();//how many characters are there at key (2+index)
                 for(char letter:keyPad[index]) keypadMapping[letter] = index+2;
             }
         }
