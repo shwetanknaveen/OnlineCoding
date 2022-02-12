@@ -1,9 +1,14 @@
-//Problem link - https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1#
-//Video link - https://www.youtube.com/watch?v=0FtVY6I4pB8&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=24
+//Problem link - https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1#
+//Video link - https://www.youtube.com/watch?v=Et9OCDNvJ78&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=24
 
-class Solution {
-  public:
-    vector <int> bottomView(Node *root) {
+//We can't use recursive traversal as which value should or shouldn't overwrite will be decided by height and hence that
+//will have to be taken into account apart from line number
+
+class Solution
+{
+    public:
+    vector<int> topView(Node *root)
+    {
         vector<int> ans;
         if(!root) return ans;
         map<int,int> mp;//line->nodeData
@@ -19,13 +24,10 @@ class Solution {
                 temp = qu.front();
                 qu.pop();
                 
-                //mp.insert(make_pair(temp.second,temp.first->data));
-                mp[temp.second] = temp.first->data;//node data is mapped to its line number =>	<lineNo. -> NodeData>
+                mp.insert(make_pair(temp.second,temp.first->data));
+                // mp[temp.second] = temp.first->data;//as we did in bottom view
                 //https://stackoverflow.com/questions/17172080/insert-vs-emplace-vs-operator-in-c-map
-                //Don't use insert() if we wish to overwrite previous value rather use emplace [] operator as above
-                //Here we intentionally wish to overwrite the previous written values  as we go on lower levels
-                //As we have to find bottom view
-                
+                //Use insert() if we wish not to overwrite previous value.
                 
                 if(temp.first->left)//if left of this node exist then its line number will be one less
                 {
@@ -41,4 +43,5 @@ class Solution {
             ans.push_back(p.second);
         return ans;
     }
+
 };
