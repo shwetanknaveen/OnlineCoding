@@ -50,7 +50,7 @@ public:
         vector<int> thisLineVals;
         for(auto p:vect)//p is a tuple <line,row,value>
         {
-            if(get<0>(p)==currLine)
+            if(get<0>(p)==currLine)//keep on pushing the node value in thisLineVals if it's in current line
             {
                 thisLineVals.push_back(get<2>(p));
             }
