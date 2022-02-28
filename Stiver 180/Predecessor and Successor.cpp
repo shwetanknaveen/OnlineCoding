@@ -99,3 +99,40 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
 
 //Approach 3 -> If we try to find predecessor and successor individually then we can do that in O(height) 
 //See "Inorder successor in BST" on leetcode soln in striver180 folder
+
+void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+{
+    int succ = -1,pred = -1;
+    Node *tempRoot = root;
+    while(tempRoot)//for successor
+        {
+            if(tempRoot->key>key)//answer will always be on right part so if we are going left then we might be missing ans
+            {
+                succ = tempRoot->key;//first store potential successor in succ
+                tempRoot = tempRoot->left;
+            }
+            else
+            {
+                tempRoot = tempRoot->right;
+            }
+        }
+    tempRoot = root;
+    while(tempRoot)//for predeccessor
+        {
+            if(tempRoot->key>=key)
+            {
+                tempRoot = tempRoot->left;
+            }
+            else//answer will always be on left part so if we are going right then we might be missing ans
+            {
+                pred = tempRoot->key;//first store potential predecessor in succ
+                tempRoot = tempRoot->right;
+            }
+        }
+        
+    if(succ != -1)
+        suc = new Node(succ);
+    if(pred != -1)
+        pre = new Node(pred);
+    
+}
