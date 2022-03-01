@@ -4,8 +4,8 @@ class Solution {
 public:
     int recHelper(vector<int> &values,int i,int count,vector<vector<int>> &dp)
     {
-        if(i==values.size())//if searching for pair members outside array then score is not feasible
-            return INT_MIN;
+        if(i==values.size())//if searching for pair members outside array then score is not feasible and that shouldn't be 
+            return INT_MIN;		//counted hence returning INT_MIN
         if(dp[i][count]!=-1) return dp[i][count];
         
         if(count==2)//We are yet to pick first pair member
