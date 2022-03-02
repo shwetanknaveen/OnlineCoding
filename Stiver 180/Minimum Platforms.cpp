@@ -9,7 +9,7 @@
 using namespace std;
 
 
-
+//Approach 1 -> Time complexity = O(nlog(n))
 class Solution{
     public:
     //Function to find the minimum number of platforms required at the
@@ -59,3 +59,23 @@ int main()
     } 
    return 0;
 }  // } Driver Code Ends
+
+
+//Approach 2 -> Difference array
+class Solution{
+    public:
+    int findPlatform(int arr[], int dep[], int n)
+    {
+    	vector<int> diff(2401, 0);
+        for(int i=0; i<n; i++) {
+            diff[arr[i]] += 1;
+            diff[dep[i]+1] -= 1;
+        }
+        int mx = diff[0];
+        for(int i=1; i<2401; i++) {
+            diff[i] += diff[i-1];
+            mx = max(mx, diff[i]);
+        }
+    	return mx;
+    }
+};
