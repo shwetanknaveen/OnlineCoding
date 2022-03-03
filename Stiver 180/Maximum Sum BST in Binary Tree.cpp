@@ -35,7 +35,8 @@ public:
     }
 };
 
-//Approach 2-> Time complexity O(n) -> Post order traversal
+//Approach 2-> Time complexity O(n) -> Post order traversal->We can judge about being BST or not at this node only after
+//										we see both left subtree and right subtree of this node
 
 class NodeValue {
 public:
@@ -69,7 +70,8 @@ public:
             return NodeValue(min(root->val, left.minNode), max(root->val, right.maxNode), 
                             BSTsum);
         }
-        return NodeValue(INT_MIN, INT_MAX, max(left.BSTsum, right.BSTsum));
+        return NodeValue(INT_MIN, INT_MAX, max(left.BSTsum, right.BSTsum));//else case when it's not a BST
+        
         //We pass minNode as INT_MIN and maxNode as INT_MAX so that it fails test for BST at other nodes which are 
         //ancestor of this node.
         //For BST,Largest on left should be smaller than node's value hence we pass largest as INT_MAX so that it is not
