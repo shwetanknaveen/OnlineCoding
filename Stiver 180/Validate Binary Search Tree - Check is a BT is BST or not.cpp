@@ -37,3 +37,20 @@ public:
         return recHelper(root,INT_MAX,INT_MIN);//initially max value can be INT_MAX and min value can be INT_MIN
     }
 };
+
+
+//Neat code with long variable
+
+class Solution {
+public:
+    bool recHelper(TreeNode *root,long min,long max)
+    {
+        if(!root) return true;
+        if(root->val<min || root->val>max) return false;
+        long curr = root->val;
+        return recHelper(root->left,min,curr-1) && recHelper(root->right,curr+1,max);
+    }
+    bool isValidBST(TreeNode* root) {
+        return recHelper(root,LONG_MIN,LONG_MAX);
+    }
+};
