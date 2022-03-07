@@ -90,7 +90,8 @@ public:
         else//this is the node which has to be delted
         {
             if(!root->left && !root->right)//this node is leaf node
-                root = NULL;//simply set it NULL
+                root = NULL;//simply set it NULL as it will be returned NULL in the last and it's parent will now point to NULL
+                			//This way it is different from linked list deletion issue when pointer to last node is given
             else if(root->right)//it has right child then it will have successor hence copy that value here and delete successor from right part
             {
                 root->val = succ(root);
