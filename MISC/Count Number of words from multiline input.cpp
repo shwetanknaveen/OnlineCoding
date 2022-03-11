@@ -40,7 +40,7 @@ int main()
         */
         while(word!=NULL)
         {
-            cout<<line<<endl;
+            cout<<word<<endl;
             ++count;
             word = strtok(NULL,delimeter);
         /*
