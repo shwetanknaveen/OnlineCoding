@@ -62,3 +62,103 @@ B 1
 
 
 */
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n,val;
+	cin>>n;
+	int start,end;
+	map<int,int> snake,ladder;
+	while(n--)
+	{
+		cin>>start>>end;
+		if(start>end)
+		{
+			snake[start] = end;
+		}
+		else
+		{
+			ladder[start] = end;
+		}
+	}
+	vector<int> moves;
+	cin>>n;
+	while(n--)
+	{
+		cin>>val;
+		moves.push_back(val);
+	}
+	bool aChance = true;
+	int aFinal = 0, bFinal = 0;
+	string winner = "";
+	for(int i=0;i<moves.size();i++)
+	{
+		if(aChance)
+		{
+			aFinal += moves[i];
+			bool changeFlag = true;
+			while(changeFlag)//after taking ladder or bitten by snake, there is again same possibity for ladder/snake from new position
+			{
+				if(snake.find(aFinal) != snake.end())
+				{
+					aFinal = snake[aFinal];
+					changeFlag = true;
+				}
+				else if(ladder.find(aFinal) != ladder.end())
+				{
+					aFinal = ladder[aFinal];
+					changeFlag = true;
+				}
+				else
+				{
+					changeFlag = false;
+				}
+			}
+			if(aFinal >= 99)
+			{
+				winner = "A 99";
+				break;
+			}
+		}
+		else
+		{
+			bFinal += moves[i];
+			bool changeFlag = true;
+			while(changeFlag)
+			{
+				if(snake.find(bFinal) != snake.end())
+				{
+					bFinal = snake[bFinal];
+					changeFlag = true;
+				}
+				else if(ladder.find(bFinal) != ladder.end())
+				{
+					bFinal = ladder[bFinal];
+					changeFlag = true;
+				}
+				else
+				{
+					changeFlag = false;
+				}
+			}
+			if(bFinal >= 99)
+			{
+				winner = "B 99";
+				break;
+			}
+		}
+		aChance = !aChance;
+	}
+	if(!winner.empty())//One of them have reaced 99
+		cout<<winner;
+	else//None of them reached 99
+	{
+		if(aFinal>bFinal)
+			cout<<"A "<<aFinal;
+		else
+			cout<<"B "<<bFinal;
+	}
+	return 0;
+}
