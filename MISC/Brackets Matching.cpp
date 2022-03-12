@@ -68,3 +68,103 @@ MISSMATCH
 
 
 */
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cin>>n;
+	cin.ignore(1,'\n');//ignore one character->"\n" was taken as first string input
+	/*
+	https://stackoverflow.com/a/35179922
+
+	Ignore function is used to skip(discard/throw away) characters in the input stream. Ignore file is associated with the 
+	file istream. Consider the function below ex: cin.ignore(120,'/n'); the particular function skips the next 120 input 
+	character or to skip the characters until a newline character is read.
+	*/
+	
+	string s;
+	while(n--)
+	{
+		getline(cin,s);
+		stack<char> stac;
+		int val = 0;//0->Valid 1->Missmatch 2->Too many opening 3->Too many closing
+		for(int i=0;i<s.length();i++)
+		{
+			if(s[i] == '(' || s[i] == '{' s[i] == '[' )
+				stac.push(s[i]);
+			else if(s[i] == ')')
+			{
+				if(stac.empty())
+				{
+					val = 3;
+					break;
+				}
+				else
+				{
+					if(stac.top() == '(')
+						stac.pop();
+					else
+					{
+						val = 1;//MISSMATCH
+						break;
+					}
+				}
+			}
+			else if(s[i] == '}')
+			{
+				if(stac.empty())
+				{
+					val = 3;
+					break;
+				}
+				else
+				{
+					if(stac.top() == '{')
+						stac.pop();
+					else
+					{
+						val = 1;//MISSMATCH
+						break;
+					}
+				}
+			}
+			else if(s[i] == ']')
+			{
+				if(stac.empty())
+				{
+					val = 3;
+					break;
+				}
+				else
+				{
+					if(stac.top() == '[')
+						stac.pop();
+					else
+					{
+						val = 1;//MISSMATCH
+						break;
+					}
+				}
+			}
+			
+		}
+		if(!stac.empty() && val==0)
+			val = 2;//Too many opening as opening brackets are still on stack and there is no violation yet i.e., still val = 0
+			
+		if(val == 0)
+			cout<<"VALID";
+		else if(val == 1)
+			cout<<"MISMATCH";
+		else if(val == 2)
+			cout<<"TOO MANY OPENING";
+		else if(val == 3)
+			cout<<"TOO MANY CLOSING";
+			
+		if(n != 0)
+			cout<<"\n";
+	}
+	return 0;
+}
