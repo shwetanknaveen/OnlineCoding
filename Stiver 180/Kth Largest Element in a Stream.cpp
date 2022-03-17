@@ -55,3 +55,15 @@ public:
         return minHeap.top();
     }
 };
+
+//Effiecient add() function.
+int add(int val) {
+        if(minHeap.size()<k)
+            minHeap.push(val);
+        else if(val>minHeap.top())//adding numbers less than kth largest number won't affect the answer
+        {
+            minHeap.push(val);
+            minHeap.pop();
+        }
+        return minHeap.top();
+    }
