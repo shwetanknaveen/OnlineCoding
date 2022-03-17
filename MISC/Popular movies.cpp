@@ -33,3 +33,37 @@ Output
 
 Badla 5
 */
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	//sorted map will contain movie name in lexicographically order as key is string
+	map<string,int> ratings;
+	string inp;
+	int rat;
+	string movie;
+	while(getline(cin>>ws,inp))// cin>>ws means takes white spaces also
+	{
+		if(inp == "THE END")
+			break;
+		stringstream s(inp);
+		getline(s,movie,'#');
+		s>>rat;
+		ratings[string(movie)] += rat;
+	}
+	int maxiRat = 0;
+	string movName;
+	map<string,int>::iterator itr;
+	for(itr = ratings.begin();itr != ratings.end(); itr++)
+	{
+		if(itr->second > maxiRat)
+		{
+			maxiRat = itr->second;
+			movName = itr->first;
+		}
+	}
+	cout<<movName<<" "<<maxiRat;
+	return 0;
+}

@@ -36,14 +36,61 @@ int main()
 				{
 					missing[toupper(word[i]) - 'A'] = 1;
 				}
-				word = "";//get ready for the new word
 			}
+			word = "";//get ready for the new word
 		}
 		else//not delimeter
 		{
 			word.push_back(c);
 			if(word.compare("endpara")==0)
 				break;
+		}
+	}
+	string ans = "";
+	for(int i=0;i<26;i++)
+	{
+		if(missing[i] == 0)//this character wasn't in input
+		{
+			ans.push_back(char(i+'A'));
+		}
+	}
+	
+	for(int i=0;i<ans.length();i++)
+	{
+		cout<<ans[i];
+		if(i != ans.length()-1)
+			cout<<" ";
+	}
+	if(ans.empty())
+		cout<<"NONE";
+	return 0;
+}
+
+
+
+
+
+//TRYING
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	vector<int> missing(26,0);
+	string inp,newWord;
+	while(getline(cin>>ws,inp))
+	{
+		if(inp=="endpara")
+			break;
+		stringstream ss(inp);
+		getline(ss,newWord,' ');
+		for(int i=0;i<newWord.length();i++)
+		{
+			if(toupper(newWord[i])>='A' && toupper(newWord[i])<='Z')
+			{
+				missing[toupper(newWord[i])-'A'] = 1;
+			}
 		}
 	}
 	string ans = "";
