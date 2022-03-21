@@ -71,7 +71,7 @@ int main()
 	char *loc1,*loc2,*distStr;
 	char delim[] = " ";
 	int dist;
-
+	int present_node = 0;
     int graph[n][n];
     
     

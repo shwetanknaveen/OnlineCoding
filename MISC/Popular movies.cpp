@@ -35,6 +35,55 @@ Badla 5
 */
 
 
+//Approach 1 -> Doing character by character parsing as we did in "Print missing alphabets"
+//Better to use character by character parsing when number of input lines are not known
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	map<string,int> ratings;
+	int rat;
+	string movie;
+	char c;
+	string word;
+	while(1)
+	{
+		c = getchar();
+		if(c == '#')//delimeter # means last word was a movie name
+		{
+			movie = word;
+			word = "";
+		}
+		else if(c=='\n')//delimeter '\n' which means last word was rating for last movie
+		{
+			rat = atoi(word.c_str());
+			ratings[movie] += rat;
+			word = "";
+		}
+		else//not delimeter
+		{
+			word.push_back(c);
+			if(word.compare("THE END"==0))
+			{
+				break;
+			}
+		}
+	}
+	int maxiRat = 0;
+	string movName;
+	map<string,int>::iterator itr;
+	for(itr = ratings.begin() ; itr != ratings.end(); itr++)
+	{
+		if(itr->second > maxiRat)
+		{
+			maxiRat = itr->second;
+			movName = itr->first;
+		}
+	}
+	cout<<movName<<" "<<maxRat;
+	return 0;
+}
+//Approach 2
 #include<bits/stdc++.h>
 using namespace std;
 int main()
