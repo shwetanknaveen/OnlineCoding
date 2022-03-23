@@ -20,13 +20,9 @@ Sample Input/Output
 Input
 
 URI # 5
-
 Gully Boy # 5
-
 Badla # 5
-
 Kabir Singh # 5
-
 THE END
 
 Output
@@ -63,7 +59,7 @@ int main()
 		else//not delimeter
 		{
 			word.push_back(c);
-			if(word.compare("THE END"==0))
+			if(word.compare("THE END")==0)
 			{
 				break;
 			}
@@ -80,7 +76,7 @@ int main()
 			movName = itr->first;
 		}
 	}
-	cout<<movName<<" "<<maxRat;
+	cout<<movName<<" "<<maxiRat;
 	return 0;
 }
 //Approach 2
