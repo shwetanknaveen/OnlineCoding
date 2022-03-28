@@ -32,3 +32,36 @@ public:
         return ans;
     }
 };
+
+//More neat code
+class Solution {
+public:
+    void dfs(int i,int j,vector<vector<char>> &grid,vector<vector<int>> &vis)
+    {
+        int r = grid.size(), c = grid[0].size();
+        if(i<0 || i>=r || j<0 || j>=c || grid[i][j]=='0' || vis[i][j])
+            return;
+        vis[i][j] = 1;
+        dfs(i-1,j,grid,vis);//up
+        dfs(i+1,j,grid,vis);//down
+        dfs(i,j-1,grid,vis);//left
+        dfs(i,j+1,grid,vis);//right
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int row = grid.size(), col = grid[0].size();
+        vector<vector<int>> vis(row,vector<int>(col,0));
+        int ans = 0;
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                if(grid[i][j] == '1' && !vis[i][j])
+                {
+                    ans++;
+                    dfs(i,j,grid,vis);
+                }
+            }
+        }
+        return ans;
+    }
+};
