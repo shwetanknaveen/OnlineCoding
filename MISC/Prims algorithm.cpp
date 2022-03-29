@@ -81,6 +81,9 @@ int main()
         }
     }
     
+    string start;
+    int minEdgeWeight = INT_MAX;
+    
 	while(m--)
 	{
 		getline(cin,inp);
@@ -102,6 +105,17 @@ int main()
         
         distStr = strtok(NULL,delim);
 		dist = atoi(string(distStr).c_str());
+		
+		if(dist<minEdgeWeight)
+		{
+			minEdgeWeight = dist;
+			start = loc1;
+		}
+		else if(dist == minEdgeWeight)
+		{
+			if(strcmp(start.c_str(),loc2)>0)
+				start = loc2;
+		}
         graph[node_number[loc1]][node_number[loc2]] = graph[node_number[loc2]][node_number[loc1]] = dist;        
 	}
     
@@ -115,8 +129,8 @@ int main()
         key[i] = INT_MAX, mstSet[i] = false;
     // Always include first 1st vertex in MST.
     // Make key 0 so that this vertex is picked as first vertex.
-    key[0] = 0;
-    parent[0] = -1; // First node is always root of MST
+    key[node_number[start]] = 0;
+    parent[node_number[start]] = -1; // First node is always root of MST
     // The MST will have V vertices
     for (int count = 0; count < n-1; count++)
     {
@@ -146,10 +160,10 @@ int main()
     cout<<department_name[ minKey(key, mstSet,n)];//last key added has to be printed without space
     
     int sum = 0;
-    for (int i = 1; i < n; i++){//0th node was vertex
-        sum+=graph[i][parent[i]];
-
-    }
+    for (int i = 0; i < n; i++){
+    	if(parent[i] != -1)
+        	sum+=graph[i][parent[i]];
+	}
     cout<<"\n"<<sum;
 	return 0;
 }
