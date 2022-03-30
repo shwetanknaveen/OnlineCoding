@@ -41,7 +41,6 @@ chemistry office sanskrit cs physics biology english
 */
 
 //Prims algorithm - https://www.youtube.com/watch?v=HnD676J56ak
-//One test case missing
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -64,7 +63,7 @@ int minKey(int key[], bool mstSet[],int n)
 
 int main()
 {
-    int n,m;
+    int n,m;//n vertices and m edges
 	cin>>n>>m;
 	cin.ignore(1,'\n');
 	string inp;
@@ -90,14 +89,14 @@ int main()
 		loc1 = strtok((char *)inp.c_str(),delim);
 		loc2 = strtok(NULL,delim);
         
-        if(strcmp(loc1,loc2)>0) swap(loc1,loc2); 
+        if(strcmp(loc1,loc2)>0) swap(loc1,loc2);//lexicographically first string in loc1 
         
-		if(!visited[loc1]){
+		if(!visited[loc1]){//if loc1 hasn't been mapped yet to its node number
             visited[loc1] = true;
             department_name[present_node] = loc1;
             node_number[loc1] = present_node++;
         }
-        if(!visited[loc2]){
+        if(!visited[loc2]){//if loc2 hasn't been mapped yet to its node number
             visited[loc2] = true;
             department_name[present_node] = loc2;
             node_number[loc2] = present_node++;
@@ -106,16 +105,18 @@ int main()
         distStr = strtok(NULL,delim);
 		dist = atoi(string(distStr).c_str());
 		
-		if(dist<minEdgeWeight)
+		//Logic for choosing starting node
+		if(dist<minEdgeWeight)//if this edge has minimum weight
 		{
 			minEdgeWeight = dist;
-			start = loc1;
+			start = loc1;//then starting node of prims would be lexicographically first node among two nodes on the side of this edge
 		}
-		else if(dist == minEdgeWeight)
+		else if(dist == minEdgeWeight)//if this edge has same weight as previous minimum weight
 		{
-			if(strcmp(start.c_str(),loc2)>0)
-				start = loc2;
+			if(strcmp(start.c_str(),loc1)>0)//then loc1 can be starting node if it comes lexicographically earlier than present start
+				start = loc1;
 		}
+		//logic for choosing starting node ends here
         graph[node_number[loc1]][node_number[loc2]] = graph[node_number[loc2]][node_number[loc1]] = dist;        
 	}
     
@@ -128,9 +129,9 @@ int main()
     for (int i = 0; i < n; i++)
         key[i] = INT_MAX, mstSet[i] = false;
     // Always include first 1st vertex in MST.
-    // Make key 0 so that this vertex is picked as first vertex.
+    // Make key node_number[start] as 0 so that this vertex is picked as first vertex.
     key[node_number[start]] = 0;
-    parent[node_number[start]] = -1; // First node is always root of MST
+    parent[node_number[start]] = -1; // Start node is root of MST
     // The MST will have V vertices
     for (int count = 0; count < n-1; count++)
     {
@@ -151,7 +152,11 @@ int main()
             // mstSet[v] is false for vertices not yet included in MST
             // Update the key only if graph[u][v] is smaller than key[v]
             //key[v] is cost of adding vertex at index v in present MST
-            if (graph[u][v] && mstSet[v] == false && graph[u][v] < key[v]){
+            
+            /*  Vertex v is			vertex v hasn't been	cost of including v in MST
+			adjacent to u		    included yet in MST		through u is less than present cost
+															of inclusion						*/
+            if (graph[u][v] 	&& 	mstSet[v] == false 	&& 	graph[u][v] < key[v]){
                 parent[v] = u, key[v] = graph[u][v];
             }
                 
