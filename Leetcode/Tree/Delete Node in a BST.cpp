@@ -11,7 +11,7 @@ public:
         if(!root->left) return root->right;//if left child doesn't exist
         if(!root->right) return root->left;//if right child doesn't exist
         
-        //both children of node to be deleted exist 
+        //both children of node to be deleted, exist 
         TreeNode *rightChild = root->right;
         TreeNode *leftChild = root->left;
         TreeNode *rightMostChildOfLeftPart = leftChild;

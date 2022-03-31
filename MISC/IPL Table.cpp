@@ -1,7 +1,9 @@
 /*
-Currently the fifth edition of Indian Premier League (IPL-5) is going on and the overall point table is changing after every match. The point table is based on the match result (win/loss) and the net run rate of each team.
+Currently the fifth edition of Indian Premier League (IPL-5) is going on and the overall point table is changing after every 
+match. The point table is based on the match result (win/loss) and the net run rate of each team.
 
-You have to write a C/Java program to create point table from the results of given set of matches. You will also have to find the net run rate of each team. Consider the following while preparing the point table:
+You have to write a C/Java program to create point table from the results of given set of matches. You will also have to 
+find the net run rate of each team. Consider the following while preparing the point table:
 
 1.      The net-run rate of each team is summed up after every match.
 
@@ -9,7 +11,8 @@ You have to write a C/Java program to create point table from the results of giv
 
 3.      The team winning the match, is awarded 2 points. In case of loss, no point will be deducted from the losing team.
 
-4.      If the run rate of both teams is same in a particular match, the match will be is consider as draw and 1 point will be awarded to each team.
+4.      If the run rate of both teams is same in a particular match, the match will be is consider as draw and 1 point will 
+		be awarded to each team.
 
 5.      If two teams have same points, the team who has better net run-rate will be up in the table.
 
