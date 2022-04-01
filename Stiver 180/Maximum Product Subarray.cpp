@@ -24,3 +24,10 @@ public:
         return result;
     }
 };
+
+
+/*
+candidates = (A[i], imax * A[i], imin * A[i])
+imax = max(candidates)
+imin = min(candidates)
+*/
