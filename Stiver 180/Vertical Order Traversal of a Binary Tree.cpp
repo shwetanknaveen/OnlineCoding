@@ -45,7 +45,7 @@ public:
         sort(vect.begin(),vect.end(),comparator);
         
         
-        //Since each line has to be added in ans as seperate vector so we will keep trach of that
+        //Since each line has to be added in ans as seperate vector so we will keep track of that
         int currLine = get<0>(vect[0]);//line number of first tuple
         vector<int> thisLineVals;
         for(auto p:vect)//p is a tuple <line,row,value>
