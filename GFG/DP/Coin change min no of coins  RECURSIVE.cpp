@@ -1,5 +1,7 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/number-of-coins1824/1#
 //Video link - https://www.youtube.com/watch?v=I-l6PBeERuc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=16
+
+//See this question's solution in "striver180/Coin Change" also
 class Solution
 {
 	
