@@ -27,7 +27,7 @@ class Solution
         	
         										//taking max of two cases for worst case
             dp[e][f] = min(dp[e][f],	1	+	max(solve(e-1,k-1,dp)	,	solve(e,f-k,dp)));//take minimum of the attempts
-            					/* 1 for this	Case-1 If egg breaks		Case-1 If egg doesn't 
+            					/* 1 for this	Case-1 If egg breaks		Case-2 If egg doesn't 
             						attempt		at this kth floor then		break then we have same
             									we have one less egg		number of eggs and critical floor
             									add we need to find			will be above this floor hence we need to find
