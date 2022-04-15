@@ -72,8 +72,8 @@ class Trie
 class Solution {
 public:
     vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& queries) {
-        vector<int> ans;
         int nQueries = queries.size();
+        vector<int> ans(nQueries);
         vector<vector<int>> newQueries(nQueries);
         for(int i=0;i<queries.size();i++)
         {
@@ -83,7 +83,6 @@ public:
         }
         sort(newQueries.begin(),newQueries.end());//sort queris on the basis of their limits of maximum value
         sort(nums.begin(),nums.end());
-        vector<pair<int,int>> ansWithIndex;
         
         Trie *obj = new Trie();
         int j=0;
@@ -95,13 +94,10 @@ public:
                 obj->insert(nums[j]);
             }
             if(!obj->root->getLink(0) && !obj->root->getLink(1))//if no number in nums was bigger than limit for this query
-                ansWithIndex.push_back(make_pair(newQueries[i][2],-1)); 
+                ans[newQueries[i][2]]=-1; //this ans is for query number newQueries[i][2]
             else
-                ansWithIndex.push_back(make_pair(newQueries[i][2],obj->getMaxXOR(newQueries[i][1])));
+                ans[newQueries[i][2]]=obj->getMaxXOR(newQueries[i][1]);
         }
-        sort(ansWithIndex.begin(),ansWithIndex.end());//sort as per index as answer for first index has to be on first place
-        for(auto p:ansWithIndex)
-            ans.push_back(p.second);
         return ans;
     }
 };
