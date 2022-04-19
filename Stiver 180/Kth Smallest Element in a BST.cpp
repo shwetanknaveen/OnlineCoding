@@ -15,6 +15,8 @@ public:
                 return;
             }
             else --k;//we will search for next smaller element
+            //After leaving the left part, let's say after leaving the first left node, we have processed first smallest element in the BST.
+            //Hence we decrease the value of k
             getAns(root->right,k,ans);
         }
     }

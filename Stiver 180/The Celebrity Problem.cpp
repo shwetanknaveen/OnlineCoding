@@ -144,3 +144,24 @@ class Solution
         return potentialCeleb;
     }
 };
+
+//This approach on leetcode
+/* The knows API is defined for you.
+      bool knows(int a, int b); */
+
+class Solution {
+public:
+    int findCelebrity(int n) {
+        int potentialCeleb = 0;
+        for(int i=0;i<n;i++)
+        {
+            if(knows(potentialCeleb,i))
+                potentialCeleb = i;
+        }
+        for(int i=0;i<n;i++)
+            if(i!=potentialCeleb && (knows(potentialCeleb,i) || !knows(i,potentialCeleb)))//if the last remaining guy knows someone or not known by someone then there is no celebrity at all
+                return -1;
+        
+        return potentialCeleb;
+    }
+};
