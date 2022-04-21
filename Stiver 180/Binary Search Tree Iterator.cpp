@@ -75,7 +75,7 @@ public:
     }
 };
 
-//More neater code with above approach where we don't keep NULL on top of stack is we don't have next element rather our
+//More neat code with above approach where we don't keep NULL on top of stack is we don't have next element rather our
 //stack is empty in that case
 
 class BSTIterator {
@@ -99,6 +99,7 @@ public:
 
 private:
     void pushAll(TreeNode *node) {
-        for (; node != NULL; myStack.push(node), node = node->left);
+        for (; node != NULL; myStack.push(node), node = node->left);//no initialisation, one conditional check and two statements in 
+        															//incremental part
     }
 };

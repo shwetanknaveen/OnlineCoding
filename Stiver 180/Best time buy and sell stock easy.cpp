@@ -33,17 +33,18 @@ public:
 
 /*
 STRIVER SOLUTION -> T(n) = O(n) , S(n) = O(1)
-
+*/
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int minBuyPrice = INT_MAX, maxProfit = INT_MIN,n=prices.size();
         for(int i=0;i<n;i++)
         {
-            minBuyPrice = min(minBuyPrice,prices[i]);
-            maxProfit = max(maxProfit,prices[i]-minBuyPrice);
+            minBuyPrice = min(minBuyPrice,prices[i]);//minimum price at which stock can be bought
+            maxProfit = max(maxProfit,prices[i]-minBuyPrice);//profit gained if we sell at this day is difference of price today and the minimum
+            												//price at which we bought the stock earlier
         }
         return maxProfit;
     }
 };
-*/
+

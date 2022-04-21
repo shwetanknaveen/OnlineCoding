@@ -1,6 +1,7 @@
 //Problem link - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 
 //Approach 1 
+//Time complexity = O(n) and Space complexity = O(1)
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
