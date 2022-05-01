@@ -60,3 +60,11 @@ public:
         return ans;
     }
 };
+
+/*
+Additional Fact -
+Suppose if some key = k is not existing in map mp
+If we do-
+ int var = mp[k]
+and then we look for mp.find(k) then we don't get it as mp.end() because now mp has key = k with some value
+*/
