@@ -34,6 +34,7 @@ public:
 
 //Time Complexity -> If nums1.size() = n1 and nums2.size() = n2 then T(n) = O(n1 + n2)
 //Each number will be pushed at max once onto the stack
+//It is given that all the numbers in nums1 and nums2 are unique
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
@@ -50,7 +51,7 @@ public:
                 stc.pop();
             if(stc.empty())//it means there is no next greater element for this number
             {
-                mp[nums2[i]] = -1;//-1 will be it's NGE as given in question
+                mp[nums2[i]] = -1;//-1 will be its NGE as given in question
                 stc.push(nums2[i]);//as we saw this greater number then push it onto the stack
             }
             else//top of stack is larger than this number
