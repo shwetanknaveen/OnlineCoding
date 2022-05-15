@@ -1,4 +1,4 @@
-//Problem link - https://leetcode.com/problems/merge-intervals/submissions/
+//Problem link - https://leetcode.com/problems/merge-intervals/
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {

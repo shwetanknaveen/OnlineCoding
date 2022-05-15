@@ -1,20 +1,8 @@
-//Problem link - https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1#
-//Video link - https://www.youtube.com/watch?v=jbhuqIASjoM&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=19
+//Problem link - https://leetcode.com/problems/network-delay-time/
 
-/*
-You don't need to read input or print anything. Your task is to complete the function dijkstra()  which takes number of 
-vertices V and an adjacency list adj as input parameters and returns a list of integers, where ith integer denotes the 
-shortest distance of the ith node from Source node. Here adj[i] contains a list of lists containing two integers where the 
-first integer j denotes that there is an edge between i and j and second integer w denotes that the weight between edge i and 
-j is w.
-
-vector<vector<int>> adj[]
-It means adj is array of vector of vector. Each element of this array has various edges and each edge itself is vector. 
-*/
-class Solution
-{
-	public:
-    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+class Solution {
+public:
+    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)//Normal Dijsktra code
     {
         vector<int> dis(V,INT_MAX);
         dis[S] = 0;//set distance of source node as 0
@@ -39,5 +27,23 @@ class Solution
             }
         }
         return dis;
+    }
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        vector<vector<int>> adj[n];
+        for(vector<int> v:times)
+        {
+            vector<int> edge = {v[1]-1,v[2]};
+            adj[v[0]-1].push_back(edge);//given numbering is from 1 to n but we are following 0 based indexing hence subtracting 1 from 
+										//vertex number
+        }
+        vector<int> ans = dijkstra(n,adj,k-1);//kth vertex is source and it is k-1 in 0 based indexing
+        int retVal = INT_MIN;
+        for(int i:ans)
+        {
+            if(i==INT_MAX) return -1;//if any node is unreachable from kth vertex
+            retVal = max(retVal,i);//we find maximum time taken to reach a vertex among all vertices. In this time, all other vertices will 
+									//also receive the signal parallely
+        }
+        return retVal;
     }
 };
