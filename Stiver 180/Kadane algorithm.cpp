@@ -1,4 +1,5 @@
 //Problem link - https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1
+//Leetcode link - https://leetcode.com/problems/maximum-subarray/
 class Solution
 {
 
@@ -27,6 +28,40 @@ class Solution
         
     }	
 };
+
+//Simpler way to handle the case when all the numbers are negative
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currSum = nums[0],maxSum = nums[0];
+        for(int i=1;i<nums.size();i++)
+        {
+            if(currSum+nums[i]>nums[i])
+            {
+                currSum += nums[i];
+            }
+            else
+            {
+                currSum = nums[i];
+            }
+            maxSum = max(maxSum,currSum);
+        }
+        return maxSum;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 CODE SUBMITTED ON LEETCODE
