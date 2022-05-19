@@ -1,6 +1,13 @@
 //Problem link - https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
 /*Here dp[i][j] gives longest increasing path length in the matrix if we start from matrix[i][j]*/
+//Time complexity -> O((m x n)^2)
 
+/*
+Usually in such matrix questions, memoization with DFS doesn't work because let's say dp[i][j] would have been telling the minimum cost to 
+reach some destination cell starting from a definite cell then it wouldn't just depend on matrix[i][j] rather it would also depend on the fact
+that from which cell we have reache to cell(i,j) itself. But here, the maximum path length starting from cell(i,j) depends on just cell(i,j)
+and doesn't matter that from where we reached there first
+*/
 class Solution {
 public:
     int helper(vector<vector<int>> &matrix,vector<vector<int>> &dp,vector<vector<bool>> &vis,int i,int j)
