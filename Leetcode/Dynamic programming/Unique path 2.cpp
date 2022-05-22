@@ -1,4 +1,7 @@
-//Problem link - https://leetcode.com/problems/unique-paths-ii/submissions/
+//Problem link - https://leetcode.com/problems/unique-paths-ii/
+
+//Here no need of visited matrix as we are allowed to move only in right and down direction and in such case there is no possibility that
+//a recursion call will come back to same cell and will fall in infinite loop
 class Solution {
 public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
