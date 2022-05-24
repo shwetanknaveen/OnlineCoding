@@ -1,5 +1,4 @@
-//Problem link - https://leetcode.com/problems/jump-game-ii/
-//See this problem also - https://leetcode.com/problems/jump-game/
+//Problem link - https://leetcode.com/problems/video-stitching/
 
 class Solution {
 public:
@@ -21,7 +20,7 @@ public:
             if(i==halt)
             {
                 halt = maxi;//we have explored all max reach options upto halt so update new halt with max reach
-                jumps++;//case of first element as destination is dealt with                                 //if(n==1) return 0; So that won't happen here
+                jumps++;//case of first element as destination is dealt with                //if(n==1) return 0; So that won't happen here
             }
         }
         if(halt>=n-1)
@@ -29,5 +28,16 @@ public:
                     //of jumps taken
         
         return -1;//otherwise in default case return -1
+    }
+    //Each clip offers jump starting from index v[0] of length (v[1]-v[0]).Index of inp is value is time. Now we wish to cover the whole
+    //timeline in minimum number of clips i.e., we wish to reach at the end in minimum number of jumps
+    int videoStitching(vector<vector<int>>& clips, int time) {
+        vector<int> inp(time+1,0);
+        for(auto v:clips)
+        {
+            if(v[0]>time) continue;//if starting point of this clip is greater than time itself then this clip is of no use 
+            inp[v[0]] = max(inp[v[0]],v[1]-v[0]);//the clip which offers jump of largest length should store its value here
+        }
+        return jump(inp);
     }
 };
