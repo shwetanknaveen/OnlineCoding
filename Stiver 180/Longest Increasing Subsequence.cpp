@@ -70,3 +70,23 @@ public:
         return lcs(nums,sorted,0,0,dp);
     }
 };
+//Approach 3-> Using binary search ->Just insert the number at its appropriate place using binary search in the result vector.
+//Time complexity -> O(nlog(n))
+
+/*
+If a number overwrites its lower bound then it is not changing the set size but it is increasing the possiblity of having larger set size
+by keeping this number smaller so that more and more number of numbers get pushed back when compared to this smaller number.
+*/
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+    vector<int> res;
+    for(int i=0; i<nums.size(); i++) 
+	{
+        auto it = lower_bound(res.begin(), res.end(), nums[i]);
+        if(it==res.end()) res.push_back(nums[i]);
+        else *it = nums[i];
+    }
+    return res.size();
+}
+};
