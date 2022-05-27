@@ -6,7 +6,7 @@ public:
     double myPow(double x, int n) {
         long long nCopy = n ;//storing n in long long as when INT_MIN is converted into positive integer, it will cause overflow
         double ans = 1.0;
-        if(n<0) nCopy = -nCopy;
+        nCopy = abs(nCopy);
         
         while(nCopy)
         {

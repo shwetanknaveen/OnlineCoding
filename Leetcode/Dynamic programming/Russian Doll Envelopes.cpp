@@ -50,3 +50,32 @@ public:
         return LISOfHeight.size();
     }
 };
+
+
+//Trying to convert approach 1 top down code into bottom up using striver's logic
+
+class Solution {
+public:
+    int maxEnvelopes(vector<vector<int>>& envelopes) 
+    {
+        sort(envelopes.begin(),envelopes.end());
+        envelopes.insert(envelopes.begin(),{0,0});
+        int n = envelopes.size();
+        vector<vector<int>> dp(n+1,vector<int>(n+1));
+        for(int ind = n-1;ind>=1;ind--)
+        {
+            for(int lastInd = n-1;lastInd>=0;lastInd--)
+            {
+                if(envelopes[ind][0]>envelopes[lastInd][0] && envelopes[ind][1]>envelopes[lastInd][1])//flip < to > because here it is checked in opposite direction
+                {
+                    dp[ind][lastInd] = max(1+dp[ind+1][ind],dp[ind+1][lastInd]);
+                }
+                else
+                {
+                    dp[ind][lastInd] = dp[ind+1][lastInd];
+                }
+            }
+        }
+        return dp[1][0];
+    }
+};
