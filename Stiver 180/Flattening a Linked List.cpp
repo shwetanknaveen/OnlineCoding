@@ -64,7 +64,7 @@ Node *flatten(Node *root)
   }
     return temp;
 
-        /*RECURSIVE APPROACH
+        /*RECURSIVE APPROACH to write flatten() function
         root->next = flatten(root->next); 
         //now merge 
         root = merge(root, root->next); 
