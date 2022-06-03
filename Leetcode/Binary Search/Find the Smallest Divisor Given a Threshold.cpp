@@ -11,7 +11,8 @@ public:
             sum = 0;
             mid = left + (right-left)/2;
             for(int i:nums)
-                sum += (i+mid-1)/mid;
+                sum += (i+mid-1)/mid;//taking ceil(i/mid) as (i+mid-1)/mid
+                
             if(sum>thres)//divisor is small and hence need to be increased
             {
                 left = mid+1;
