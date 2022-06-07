@@ -61,8 +61,11 @@ public:
             if(!vis[it]) {//if this neighbor is not visited then start dfs from this neighbor
                 if(checkCycle(it, adj, vis, dfsVis)) return true;//We can't simply return as there can be cycle with
                 												//other neighbours
-            } else if(dfsVis[it]) {//else if this neighbor has already been visited and it is also marked visited in dfsVis
-                return true; 		//then there is a cycle
+            } else if(dfsVis[it]) {//else if this neighbor has already been visited and it is also marked visited in dfsVis i.e., it is
+                return true; 		//pointing back to one of the node in the path through which we came here then there is a cycle
+                					//When dfsVis is not true -> Suppose some component's node is visited but when traversal of that
+                					//component is completed, dfsVis of that node is set 0. Now if some node of other component points 
+                					//to this node, then it won't form a cycle.
             }
         }
         dfsVis[node] = 0; //When all recursive calls at this node is over then set dfsVis back to 0
