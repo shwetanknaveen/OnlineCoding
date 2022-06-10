@@ -12,7 +12,7 @@ Similarly, if there are five, six, or seven stones you can win by taking just en
 But if there are eight stones on the pile, you will inevitably lose, because regardless whether you pick one, two or three stones from the pile, 
 your opponent can pick three, two or one stone to ensure that, again, four stones will be left to you on your turn.
 
-It is obvious that the same pattern repeats itself for n=4,8,12,16,\dotsn=4,8,12,16,…, basically all multiples of 44.
+It is obvious that the same pattern repeats itself for n=4,8,12,16,...., basically all multiples of 4.
 */
 
 class Solution {
