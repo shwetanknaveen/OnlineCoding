@@ -4,7 +4,8 @@ class Solution {
 public:
     static bool cmp(string &s1,string &s2)//sort in ascending order of string length
     {
-        return s1.length()<s2.length();
+        return s1.length()<s2.length();//If we do <= here, it will throw heap overflow error because of comparator property violation
+        								// https://stackoverflow.com/a/52745280/6743289
     }
     bool check(string &pred,string &succ)
     {
