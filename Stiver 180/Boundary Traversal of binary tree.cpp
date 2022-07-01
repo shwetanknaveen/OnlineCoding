@@ -22,7 +22,8 @@ public:
     vector <int> boundary(Node *root)
     {
         vector<int> leftNodes,rightNodes,leafNodes;
-        if(!isLeaf(root))//main root is separately added if it's not a leaf node
+        if(!isLeaf(root))//main root is separately added if it's not a leaf node. It is done so that if root itself is leaf node then it is
+        				//not added twice in the answer
             leftNodes.push_back(root->data);
             
         Node *temp = root->left;//start from left subtree for left side nodes
