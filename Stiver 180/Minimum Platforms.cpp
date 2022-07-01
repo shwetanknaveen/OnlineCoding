@@ -62,14 +62,20 @@ int main()
 
 
 //Approach 2 -> Difference array
+/*
+There is no meaning of difference array on its own. It gives meaning when we do prefix sum of it. So if we wish to update values from ith
+to jth index in the main array (let's say we wish to add 1 from ith to jth index) then we just add 1 at ith index and it will be carried
+forward while doing prefix sum and we do -1 at j+1 index so that +1 effect is not carried forward at j+1 index and onwards.
+ 
+*/
 class Solution{
     public:
     int findPlatform(int arr[], int dep[], int n)
     {
     	vector<int> diff(2401, 0);
         for(int i=0; i<n; i++) {
-            diff[arr[i]] += 1;
-            diff[dep[i]+1] -= 1;
+            diff[arr[i]] += 1;//each train will require 1 platform at its arrival time
+            diff[dep[i]+1] -= 1;//train will keep alloted plotform engaged UPTO its departure time.
         }
         int mx = diff[0];
         for(int i=1; i<2401; i++) {
