@@ -30,6 +30,9 @@ public:
 };
 
 //Approach 2 - Dynamic programing with bit manipulation
+//Total masks = 2^n
+//Time Complexity : 0(n*2^n)
+//Space Complexity: 0(2^n)
 class Solution {
 public:
     //There has to be k subsets each of sum subsetSum and the present sum of this subset is currSum
