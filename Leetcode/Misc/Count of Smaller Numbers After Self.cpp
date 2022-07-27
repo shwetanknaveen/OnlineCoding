@@ -2,7 +2,6 @@
 //See also - "Love Babbar DSA/Count inversion"
 class Solution {
 public:
-    int val = 0;
     void merge(vector<pair<int,int>> &arr, int l, int m, int r,vector<int> &count)
     {
         int n1 = m-l+1;	//sub-array 1 will contain elements upto m
@@ -25,9 +24,9 @@ public:
         {
             if(arrL[i].first<=arrR[j].first)
             {
-                count[arrL[i].second] += countThis;
-                arr[k] = arrL[i];
-                i++;
+                count[arrL[i].second] += countThis;//Seeing the ith element in arrL for the last time in this merge hence store the count of smaller number than it
+                arr[k] = arrL[i];				//Obviously those numbers will also be counted for it which were smaller than numbers on left of ith number
+                i++;							//in arrL because number at i in arrL is larger than numbers on its left as arrL and arrR is sorted
             }
             else
             {   //element in right array is smaller
@@ -40,7 +39,6 @@ public:
     public:
     void mergeSort(vector<pair<int,int>> &arr, int l, int r,vector<int> &count)
     {
-        //code here
         if(l<r)
         {
             int m = (l+r)/2;
