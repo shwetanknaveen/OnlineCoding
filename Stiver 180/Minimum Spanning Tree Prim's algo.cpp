@@ -42,7 +42,7 @@ class Solution
             for(auto p : adj[addNode])//look for the adjacent nodes of the recently added node
             {
                 if(key[p[0]] > p[1] && !mst[p[0]])//if this adjecent node(p[0]) hasn't been added yet and its current cost
-                								//cost of addition is more than cost of additon through vertex addNode (
+                								//is more than cost of additon through vertex addNode (
 												//this cost is p[1]) then update the current cost and parent of this
 												//neighbour i.e., p[0]
                 {

@@ -1,7 +1,8 @@
 //Problem link - https://leetcode.com/problems/minimum-sum-of-squared-difference/
-
+//See similar question - "Leetcode/Contests/Randoms/Weekly 214/Sell Diminishing-Valued Colored Balls"
 /*
-Difference will only be minimised if we reduce the maximum difference to lower value and we can reduce the maximum differece by 1 by consuming one value from either k1 or k2. Here sign doesn't matters or it doesn't matter because diff's square will be added in ans
+Difference will only be minimised if we reduce the maximum difference to lower value and we can reduce the maximum differece by 1 by consuming 
+one value from either k1 or k2. Here sign doesn't matters or it doesn't matter because diff's square will be added in ans
 */
 class Solution {
 public:
