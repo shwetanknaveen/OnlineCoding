@@ -1,6 +1,7 @@
 //Problem link - https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
 
 //Approach 1 -> Using Dijikstra's algorithm
+
 class Solution {
 public:
     int minimumObstacles(vector<vector<int>>& grid) 
@@ -34,6 +35,8 @@ public:
         return dist[row-1][col-1];
     }
 };
+
+
 
 //Approach 2 -> Using 0-1 BFS -> Same as Dijikstra implementation
 /*
