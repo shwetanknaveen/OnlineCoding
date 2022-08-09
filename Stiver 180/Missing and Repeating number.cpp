@@ -36,10 +36,10 @@ pair<int,int> missingAndRepeating(vector<int> &arr, int n)
  		if xor1 = 4 then set_bit_no = 4 and so on
  		*/
         /* Now divide elements into two sets by comparing
-    rightmost set bit of xor1 with the bit at the same
-    position in each element. Also, get XORs of two
-    sets. The two XORs are the output elements. The
-    following two for loops serve the purpose */
+    	rightmost set bit of xor1 with the bit at the same
+    	position in each element. Also, get XORs of two
+    	sets. The two XORs are the output elements. The
+    	following two for loops serve the purpose */
         for (i = 0; i < n; i++) {
             if ((arr[i] & set_bit_no) != 0)//bucketing numbers given in the list
                 /* arr[i] belongs to first set */
@@ -58,6 +58,7 @@ pair<int,int> missingAndRepeating(vector<int> &arr, int n)
                 /* i belongs to second set*/
                 y = y ^ i;
         }
+        //Now one of x,y is the missing number and the other one is repeating number
         bool flag = false;
       for(i=0;i<n;i++){//traversing array again to find that the found number is 
       					//missing or the repeated one

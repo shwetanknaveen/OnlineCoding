@@ -6,8 +6,8 @@ Setting of zeroes shouldn't be cascaded that is if because of one zero, a cell i
 zero...then that cell shouldn't force other cells in its row and column to be zeroes
 */
 //Approach 1 (Brute Force) -> Time complexity - O(mn) Space complexity - O(m+n)
-//Save rows and columns in two maps rows and columns of those cells which have 0s and then traverse the matrix and set all cells 0 depending
-//on this
+//Save rows and columns in two maps rows and columns of those cells which have 0s and then traverse the matrix and set all 
+//cells 0 depending on this
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
