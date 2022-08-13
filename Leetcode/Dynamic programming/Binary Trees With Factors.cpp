@@ -29,3 +29,35 @@ public:
         return ans;
     }
 };
+
+
+//We can remove the usage of set and utilise our dp map for the same purpose
+class Solution {
+public:
+    int mod = 1e9+7;
+    long solve(int num,map<int,long> &numAsBaseTreeCount)
+    {
+        if(numAsBaseTreeCount[num] != 0) return numAsBaseTreeCount[num];
+        
+        long ans = 1;
+        for(auto p:numAsBaseTreeCount)
+        {
+            int fact = p.first;
+            if(fact>num) break;
+            if(num%fact==0 && numAsBaseTreeCount.find(num/fact) != numAsBaseTreeCount.end())
+                ans = ans%mod + (solve(fact,numAsBaseTreeCount)%mod)*(solve(num/fact,numAsBaseTreeCount)%mod);
+        }
+        return numAsBaseTreeCount[num] = ans%mod;
+    }
+    int numFactoredBinaryTrees(vector<int>& arr) 
+    {
+        map<int,long> numAsBaseTreeCount;
+        for(int num:arr)
+            numAsBaseTreeCount[num] = 0;
+        
+        int ans = 0;
+        for(auto i:arr)
+            ans =(ans + solve(i,numAsBaseTreeCount))%mod;
+        return ans;
+    }
+};
