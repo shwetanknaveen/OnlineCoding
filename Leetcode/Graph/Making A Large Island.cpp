@@ -25,7 +25,8 @@ public:
                 if(grid[i][j]==0) continue;//this is not island then no need to process it
                 int area = 0;//let's find out area of this island and fill unique group id in the cells of this island
                 getAreaAndFillId(i,j,grid,vis,area,groupId);
-                maxi = max(maxi,area);//save this area as maximum possible ans because it may be the case that there is no zero at all in the grid and this is the maximum possible area
+                maxi = max(maxi,area);//save this area as maximum possible ans because it may be the case that there is no 
+										//zero at all in the grid and this is the maximum possible area
                 groupIdArea[groupId] = area;
                 //Now area of this island has been calculated and saved and groupId has been filled in each cell
                 groupId++;//change group id so that each island gets unique group id
@@ -33,6 +34,7 @@ public:
             
         }
         
+        //Let's see flipping which zero can result one island having maximum area
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
@@ -45,7 +47,8 @@ public:
                     {
                         int adjI = i+dir1[x],adjJ = j+dir2[x];
                         if(adjI<0 || adjI>=n || adjJ<0 || adjJ>=n) continue;
-                        if(includedGroupIds.find(grid[adjI][adjJ])==includedGroupIds.end())//this neighbour island hasn't been included yet
+                        if(includedGroupIds.find(grid[adjI][adjJ])==includedGroupIds.end())//this neighbour island hasn't 
+																							//been included yet
                         {
                             total = total + groupIdArea[grid[adjI][adjJ]];//add its area
                             includedGroupIds.insert(grid[adjI][adjJ]);//include this island
