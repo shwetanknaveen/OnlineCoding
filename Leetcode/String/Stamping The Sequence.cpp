@@ -1,6 +1,6 @@
 //Problem link - https://leetcode.com/problems/stamping-the-sequence/
 //Video link - https://www.youtube.com/watch?v=EtalsGoNrBI
-
+//target len = N, stamp len = M  ==> T(n) = O(N x (N-M))
 //We will be going backwards by converting all characters of target to '?'.
 class Solution {
 public:
