@@ -18,7 +18,7 @@ public:
                 solve(ind+1,n,k,temp,ans);
                 temp.pop_back();
             }
-            else
+            else//this is not the first digit
             {
                 if(abs(c-temp[ind-1])==k)//difference with last filled number should be k
                 {
